@@ -195,6 +195,16 @@
       burger.classList.toggle('open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     });
+    
+    // Закрываем меню при клике на любую ссылку внутри него
+    const navLinks = mobileNav.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.hidden = true;
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
   }
 
   // ---------- reveal-анимации при скролле ----------

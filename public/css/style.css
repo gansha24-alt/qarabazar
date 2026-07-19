@@ -907,7 +907,10 @@ h1, h2, h3, .logo-text { font-family: var(--font-display); font-weight: 600; lin
 }
 
 @media (max-width: 640px) {
-  .container { width: calc(100% - 32px); }
+  html, body { overflow-x: hidden; }
+  .container { width: calc(100% - 32px); margin: 0 auto; }
+  .site-header { padding: 10px 0; }
+  .site-logo-svg { height: 38px; }
   h1 { font-size: 32px; }
   h2 { font-size: 26px; }
   h3 { font-size: 20px; }
