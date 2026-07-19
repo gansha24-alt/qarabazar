@@ -1,0 +1,201 @@
+<%- include('head') %>
+
+<!-- SVG-спрайт: этнические орнаменты -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Новый типографический логотип -->
+    <symbol id="qb-logo" viewBox="0 0 160 150">
+      <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <g transform="translate(18, 10)">
+          <!-- Q -->
+          <polygon points="0,20 12,0 24,20 24,40 12,60 0,40" />
+          <line x1="8" y1="30" x2="30" y2="75" />
+          <!-- A -->
+          <g transform="translate(32, 0)"><polyline points="0,60 0,20 12,0 24,20 24,60" /><line x1="0" y1="35" x2="24" y2="35" /></g>
+          <!-- R -->
+          <g transform="translate(64, 0)"><polyline points="0,60 0,20 12,0 24,20 0,40" /><line x1="10" y1="30" x2="24" y2="60" /></g>
+          <!-- A -->
+          <g transform="translate(96, 0)"><polyline points="0,60 0,20 12,0 24,20 24,60" /><line x1="0" y1="35" x2="24" y2="35" /></g>
+        </g>
+        <g transform="translate(2, 80)">
+          <!-- B -->
+          <line x1="0" y1="0" x2="0" y2="60" />
+          <polyline points="0,0 22,15 0,30" />
+          <polyline points="0,30 24,45 0,60" />
+          <!-- A -->
+          <g transform="translate(32, 0)"><polyline points="0,60 0,20 12,0 24,20 24,60" /><line x1="0" y1="35" x2="24" y2="35" /></g>
+          <!-- Z -->
+          <g transform="translate(64, 0)"><polyline points="0,0 24,0 0,60 24,60" /></g>
+          <!-- A -->
+          <g transform="translate(96, 0)"><polyline points="0,60 0,20 12,0 24,20 24,60" /><line x1="0" y1="35" x2="24" y2="35" /></g>
+          <!-- R -->
+          <g transform="translate(128, 0)"><polyline points="0,60 0,20 12,0 24,20 0,40" /><line x1="10" y1="30" x2="24" y2="60" /></g>
+        </g>
+      </g>
+    </symbol>
+    
+    <!-- Новый элемент брендинга (Орнамент Төртқұлақ) -->
+    <symbol id="qb-brand" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <g id="qb-brand-arm">
+          <path d="M 55,45 L 55,25 A 10,10 0 0,1 75,25 A 10,10 0 0,1 65,35" />
+          <path d="M 45,45 L 45,25 A 10,10 0 0,0 25,25 A 10,10 0 0,0 35,35" />
+          <polygon points="50,2 56,8 50,14 44,8" />
+        </g>
+        <use href="#qb-brand-arm" transform="rotate(90 50 50)" />
+        <use href="#qb-brand-arm" transform="rotate(180 50 50)" />
+        <use href="#qb-brand-arm" transform="rotate(270 50 50)" />
+      </g>
+    </symbol>
+
+    <!-- восьмиконечная звезда (старая) -->
+    <symbol id="qb-brand" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="5">
+        <path d="M50 8 L92 50 L50 92 L8 50 Z"/>
+        <rect x="21" y="21" width="58" height="58"/>
+      </g>
+      <circle cx="50" cy="50" r="6" fill="currentColor"/>
+    </symbol>
+    <!-- қошқар мүйіз — бараньи рога -->
+    <symbol id="qb-brand" viewBox="0 0 100 70">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round">
+        <path d="M50 66 L50 22"/>
+        <path d="M50 24 C50 10 38 4 28 9 C16 15 12 30 20 39 C26 46 37 45 41 38 C44 32 40 25 34 26"/>
+        <path d="M50 24 C50 10 62 4 72 9 C84 15 88 30 80 39 C74 46 63 45 59 38 C56 32 60 25 66 26"/>
+      </g>
+    </symbol>
+    <!-- шанырак -->
+    <symbol id="qb-brand" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="5">
+        <circle cx="50" cy="50" r="40"/>
+        <circle cx="50" cy="50" r="14"/>
+        <path d="M50 10 C64 30 64 70 50 90"/>
+        <path d="M50 10 C36 30 36 70 50 90"/>
+        <path d="M10 50 C30 36 70 36 90 50"/>
+        <path d="M10 50 C30 64 70 64 90 50"/>
+      </g>
+    </symbol>
+    <!-- солнце -->
+    <symbol id="qb-brand" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round">
+        <circle cx="50" cy="50" r="20"/>
+        <path d="M50 6 V20 M50 80 V94 M6 50 H20 M80 50 H94 M19 19 L29 29 M71 71 L81 81 M81 19 L71 29 M29 71 L19 81"/>
+      </g>
+    </symbol>
+    <!-- кувшин -->
+    <symbol id="qb-brand" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round">
+        <path d="M38 8 H62 L58 22 C74 30 80 46 78 62 C76 80 64 92 50 92 C36 92 24 80 22 62 C20 46 26 30 42 22 Z"/>
+        <path d="M30 52 H70" stroke-dasharray="8 6"/>
+      </g>
+    </symbol>
+    <!-- ткань / плетение -->
+    <symbol id="qb-brand" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round">
+        <path d="M50 10 L90 50 L50 90 L10 50 Z"/>
+        <path d="M50 30 L70 50 L50 70 L30 50 Z"/>
+        <path d="M50 10 V30 M90 50 H70 M50 90 V70 M10 50 H30"/>
+      </g>
+    </symbol>
+    <!-- щит -->
+    <symbol id="qb-brand" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round">
+        <path d="M50 6 C62 14 74 18 86 20 C86 48 80 76 50 94 C20 76 14 48 14 20 C26 18 38 14 50 6 Z"/>
+        <path d="M50 32 L62 50 L50 68 L38 50 Z"/>
+      </g>
+    </symbol>
+    <!-- компас / путь -->
+    <symbol id="qb-brand" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round">
+        <circle cx="50" cy="50" r="40"/>
+        <path d="M50 14 L58 42 L86 50 L58 58 L50 86 L42 58 L14 50 L42 42 Z"/>
+      </g>
+    </symbol>
+    <!-- сердце -->
+    <symbol id="qb-heart" viewBox="0 0 24 24">
+      <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"
+        d="M12 20.5 C7 16.5 3 13 3 8.8 C3 6 5.2 4 7.8 4 C9.5 4 11 4.9 12 6.3 C13 4.9 14.5 4 16.2 4 C18.8 4 21 6 21 8.8 C21 13 17 16.5 12 20.5 Z"/>
+    </symbol>
+    <!-- корзина -->
+    <symbol id="qb-bag" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+        <path d="M5 8 H19 L18 21 H6 Z"/>
+        <path d="M9 10 V6 a3 3 0 0 1 6 0 V10"/>
+      </g>
+    </symbol>
+    <!-- поиск -->
+    <symbol id="qb-search" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <circle cx="11" cy="11" r="6.5"/>
+        <path d="M16 16 L21 21"/>
+      </g>
+    </symbol>
+    <!-- профиль -->
+    <symbol id="qb-user" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4.5 20.5 C5.5 16.5 8.5 14.5 12 14.5 C15.5 14.5 18.5 16.5 19.5 20.5"/>
+      </g>
+    </symbol>
+    <!-- звезда рейтинга -->
+    <symbol id="qb-rstar" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2.5 L14.9 8.6 L21.5 9.5 L16.7 14.1 L17.9 20.7 L12 17.5 L6.1 20.7 L7.3 14.1 L2.5 9.5 L9.1 8.6 Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="page-shell">
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <button class="burger" id="burgerBtn" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+
+    <a href="/" class="logo" aria-label="Qara Bazar — на главную">
+      <svg class="site-logo-svg"><use href="#qb-logo"/></svg>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="/catalog" class="nav-link">Каталог</a>
+      <a href="/sellers" class="nav-link">Мастера</a>
+      <a href="/about" class="nav-link">О проекте</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Поиск">
+        <svg><use href="#qb-search"/></svg>
+      </button>
+      <a href="<%= user ? '/account' : '/login' %>" class="icon-btn <%= user ? 'logged-in' : '' %>" aria-label="<%= user ? 'Личный кабинет' : 'Войти' %>" title="<%= user ? user.name : 'Войти' %>">
+        <svg><use href="#qb-user"/></svg>
+        <% if (user) { %><span class="user-dot"></span><% } %>
+      </a>
+      <a href="/favorites" class="icon-btn" aria-label="Избранное">
+        <svg><use href="#qb-heart"/></svg>
+        <span class="badge" data-fav-count hidden>0</span>
+      </a>
+      <a href="/cart" class="icon-btn" aria-label="Корзина">
+        <svg><use href="#qb-bag"/></svg>
+        <span class="badge" data-cart-count hidden>0</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="search-bar" id="searchBar" hidden>
+    <form class="container search-form" action="/catalog" method="get">
+      <svg class="search-ico"><use href="#qb-search"/></svg>
+      <input type="text" name="q" id="searchInput" placeholder="Найти изделие, мастера, материал…" autocomplete="off">
+      <button type="submit" class="btn btn-gold btn-sm">Искать</button>
+    </form>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav" hidden>
+  <a href="/catalog">Каталог</a>
+  <a href="/sellers">Мастера и бренды</a>
+  <a href="/about">О проекте</a>
+  <a href="/favorites">Избранное</a>
+  <a href="/cart">Корзина</a>
+  <a href="<%= user ? '/account' : '/login' %>"><%= user ? 'Личный кабинет' : 'Войти / Регистрация' %></a>
+</div>
+
+<main class="site-main">

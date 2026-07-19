@@ -1,0 +1,32 @@
+<article class="product-card reveal" data-product-id="<%= p.id %>">
+  <a href="/product/<%= p.slug %>" class="pc-media">
+    <% if (p.images.length) { %>
+      <img src="<%= p.images[0] %>" alt="<%= p.title %>" loading="lazy">
+    <% } else { %>
+      <span class="pc-placeholder"><svg><use href="#qb-brand"/></svg></span>
+    <% } %>
+    <% if (p.old_price && p.old_price > p.price) { %>
+      <span class="pc-sale">−<%= Math.round((1 - p.price / p.old_price) * 100) %>%</span>
+    <% } %>
+    <% if (p.featured) { %><span class="pc-featured">Выбор базара</span><% } %>
+  </a>
+  <button class="pc-fav" data-fav-btn="<%= p.id %>" aria-label="В избранное">
+    <svg><use href="#qb-heart"/></svg>
+  </button>
+  <div class="pc-body">
+    <% if (p.category_name) { %><span class="pc-cat"><%= p.category_name %></span><% } %>
+    <h3 class="pc-title"><a href="/product/<%= p.slug %>"><%= p.title %></a></h3>
+    <% if (p.seller_name) { %>
+      <a class="pc-seller" href="/seller/<%= p.seller_slug %>"><%= p.seller_name %><% if (p.seller_location) { %> · <%= p.seller_location %><% } %></a>
+    <% } %>
+    <div class="pc-foot">
+      <span class="pc-price">
+        <%= fmt(p.price) %> <%= settings.currency %>
+        <% if (p.old_price && p.old_price > p.price) { %><s><%= fmt(p.old_price) %></s><% } %>
+      </span>
+      <button class="pc-add" data-add-to-cart="<%= p.id %>" aria-label="В корзину">
+        <svg><use href="#qb-bag"/></svg>
+      </button>
+    </div>
+  </div>
+</article>

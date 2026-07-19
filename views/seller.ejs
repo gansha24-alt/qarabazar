@@ -1,0 +1,64 @@
+<%- include('partials/header') %>
+
+<section class="seller-hero">
+  <% if (seller.cover) { %>
+    <div class="seller-cover" style="background-image:url('<%= seller.cover %>')"></div>
+  <% } else { %>
+    <div class="seller-cover seller-cover-pattern"></div>
+  <% } %>
+  <div class="container seller-hero-inner">
+    <span class="sh-avatar reveal">
+      <% if (seller.avatar) { %><img src="<%= seller.avatar %>" alt="<%= seller.name %>">
+      <% } else { %><svg><use href="#qb-brand"/></svg><% } %>
+    </span>
+    <div class="sh-info">
+      <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><a href="/sellers">Мастера</a><span>◆</span><b><%= seller.name %></b></nav>
+      <span class="sc-kind reveal"><%= seller.kind === 'brand' ? 'бренд' : seller.kind === 'studio' ? 'студия' : 'мастер' %></span>
+      <h1 class="page-title reveal"><%= seller.name %></h1>
+      <% if (seller.location) { %><p class="sh-location reveal">◆ <%= seller.location %></p><% } %>
+      <div class="sh-links reveal">
+        <% if (seller.instagram) { %>
+          <a href="https://instagram.com/<%= seller.instagram %>" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Instagram</a>
+        <% } %>
+        <% if (seller.website) { %>
+          <a href="<%= seller.website %>" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Сайт</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% if (seller.bio) { %>
+<section class="section seller-bio-section">
+  <div class="container">
+    <div class="seller-bio reveal">
+      <svg class="sb-ornament" aria-hidden="true"><use href="#qb-brand"/></svg>
+      <p><%= seller.bio %></p>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-title-wrap">
+        <span class="section-eyebrow">прилавок мастера</span>
+        <h2 class="section-title">Изделия — <%= products.length %></h2>
+      </div>
+    </div>
+    <% if (products.length) { %>
+      <div class="product-grid">
+        <% products.forEach(p => { %><%- include('partials/product-card', { p }) %><% }) %>
+      </div>
+    <% } else { %>
+      <div class="empty-state reveal">
+        <svg class="es-ornament"><use href="#qb-brand"/></svg>
+        <h3>Прилавок пока пуст</h3>
+        <p>Мастер готовит первые изделия к продаже.</p>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

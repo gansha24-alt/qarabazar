@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+
+<section class="page-head">
+  <div class="container">
+    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b>Избранное</b></nav>
+    <h1 class="page-title reveal">Избранное</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="product-grid" id="favGrid"></div>
+    <div class="empty-state" id="favEmpty" hidden>
+      <svg class="es-ornament"><use href="#qb-heart"/></svg>
+      <h3>Пока пусто</h3>
+      <p>Отмечайте сердцем то, что запало в душу — соберём здесь.</p>
+      <a href="/catalog" class="btn btn-gold">В каталог</a>
+    </div>
+  </div>
+</section>
+
+<script src="/js/favorites.js" defer></script>
+
+<%- include('partials/footer') %>

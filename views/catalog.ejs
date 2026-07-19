@@ -1,0 +1,74 @@
+<%- include('partials/header') %>
+
+<section class="page-head">
+  <div class="container">
+    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b>Каталог</b></nav>
+    <h1 class="page-title reveal">Каталог</h1>
+  </div>
+</section>
+
+<section class="section catalog-section">
+  <div class="container catalog-layout">
+    <aside class="catalog-filters" id="catalogFilters">
+      <div class="filter-block">
+        <h4 class="filter-title">Категории</h4>
+        <div class="filter-cats" id="filterCats">
+          <button class="fcat <%= !activeCategory ? 'active' : '' %>" data-cat="">Все ряды</button>
+          <% categories.forEach(c => { %>
+            <button class="fcat <%= activeCategory === c.slug ? 'active' : '' %>" data-cat="<%= c.slug %>">
+              <%= c.name %> <i><%= c.product_count %></i>
+            </button>
+          <% }) %>
+        </div>
+      </div>
+      <div class="filter-block">
+        <h4 class="filter-title">Цена, <%= settings.currency %></h4>
+        <div class="filter-price">
+          <input type="number" id="priceMin" placeholder="от" min="0">
+          <span>—</span>
+          <input type="number" id="priceMax" placeholder="до" min="0">
+        </div>
+        <button class="btn btn-ghost btn-sm" id="applyPrice">Применить</button>
+      </div>
+    </aside>
+
+    <div class="catalog-main">
+      <div class="catalog-toolbar reveal">
+        <div class="ct-search">
+          <svg><use href="#qb-search"/></svg>
+          <input type="text" id="catalogSearch" placeholder="Поиск по каталогу…" value="<%= initialQuery %>">
+        </div>
+        <select id="catalogSort" class="ct-sort" aria-label="Сортировка">
+          <option value="new">Сначала новые</option>
+          <option value="featured">Выбор базара</option>
+          <option value="price_asc">Дешевле</option>
+          <option value="price_desc">Дороже</option>
+        </select>
+        <button class="btn btn-ghost btn-sm filters-toggle" id="filtersToggle">Фильтры</button>
+      </div>
+
+      <p class="catalog-count" id="catalogCount"></p>
+      <div class="product-grid" id="catalogGrid"></div>
+
+      <div class="empty-state" id="catalogEmpty" hidden>
+        <svg class="es-ornament"><use href="#qb-brand"/></svg>
+        <h3>Ничего не нашлось</h3>
+        <p>Попробуйте изменить запрос или сбросить фильтры — базар большой.</p>
+      </div>
+
+      <div class="catalog-more">
+        <button class="btn btn-gold" id="loadMore" hidden>Показать ещё</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  window.QB_CATALOG = {
+    category: <%- JSON.stringify(activeCategory) %>,
+    q: <%- JSON.stringify(initialQuery) %>
+  };
+</script>
+<script src="/js/catalog.js" defer></script>
+
+<%- include('partials/footer') %>

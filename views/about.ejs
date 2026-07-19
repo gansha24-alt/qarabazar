@@ -1,0 +1,60 @@
+<%- include('partials/header') %>
+
+<section class="page-head about-head">
+  <div class="container">
+    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b>О проекте</b></nav>
+    <h1 class="page-title reveal">Qara Bazar — <br>великий базар нового времени</h1>
+    <p class="page-sub reveal"><%= settings.site_tagline %></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container about-grid">
+    <div class="about-text reveal">
+      <h2>Почему «Qara»?</h2>
+      <p>В тюркских языках «қара» — это не только «чёрный». Это «великий», «главный», «настоящий».
+        Қара жер — родная земля. Қара шаңырақ — отчий дом. Qara Bazar — большой базар,
+        где собирается всё настоящее.</p>
+      <p>Мы строим место, где художник из маленькой мастерской, ремесленник в третьем поколении
+        и молодой локальный бренд стоят за одним прилавком — и их видит весь мир.</p>
+    </div>
+    <div class="about-ornament reveal" aria-hidden="true">
+      <svg class="ao-big"><use href="#qb-brand"/></svg>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-title-wrap">
+        <span class="section-eyebrow">путь мастера</span>
+        <h2 class="section-title">Как попасть на базар</h2>
+      </div>
+    </div>
+    <div class="manifesto-steps about-steps">
+      <div class="mstep reveal"><b>01</b><h3>Напишите нам</h3><p>Расскажите о себе и своих изделиях на <a href="mailto:<%= settings.contact_email %>"><%= settings.contact_email %></a> — приложите фото работ.</p></div>
+      <div class="mstep reveal"><b>02</b><h3>Мы оформим прилавок</h3><p>Создадим страницу мастера, отснимем описания и выложим первые изделия на витрину.</p></div>
+      <div class="mstep reveal"><b>03</b><h3>Продавайте и растите</h3><p>Заказы приходят напрямую, а мы помогаем с продвижением и международной доставкой.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container about-stats reveal">
+    <div class="stat"><b data-countup="<%= stats.sellers %>">0</b><span>мастеров и брендов</span></div>
+    <div class="stat"><b data-countup="<%= stats.products %>">0</b><span>авторских изделий</span></div>
+    <div class="stat"><b data-countup="<%= stats.cities %>">0</b><span>городов</span></div>
+  </div>
+</section>
+
+<section class="section manifesto about-cta">
+  <div class="container manifesto-inner reveal">
+    <svg class="manifesto-star" aria-hidden="true"><use href="#qb-brand"/></svg>
+    <h2>Есть что показать миру?</h2>
+    <p>Присоединяйтесь к Qara Bazar — расскажите о своём ремесле, и мы поможем ему зазвучать.</p>
+    <a href="mailto:<%= settings.contact_email %>?subject=Хочу на Qara Bazar" class="btn btn-gold btn-lg">Стать мастером базара</a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

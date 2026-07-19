@@ -1,0 +1,19 @@
+{
+  "name": "qara-bazar",
+  "version": "1.0.0",
+  "description": "Qara Bazar — маркетплейс локального творчества: художники, ремесленники, дизайнеры, локальные бренды",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

@@ -1,0 +1,140 @@
+<%- include('partials/header') %>
+
+<section class="page-head">
+  <div class="container">
+    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b>Личный кабинет</b></nav>
+    <div class="account-head reveal">
+      <h1 class="page-title">Салем, <%= user.name %>!</h1>
+      <button class="btn btn-ghost btn-sm" id="logoutBtn">Выйти</button>
+    </div>
+  </div>
+</section>
+
+<section class="section account-section">
+  <div class="container account-layout">
+
+    <aside class="account-profile reveal">
+      <h3 class="ap-title">Профиль</h3>
+      <form id="profileForm" class="checkout-form" style="margin-top:14px">
+        <label>Имя<input type="text" name="name" value="<%= user.name %>" required minlength="2"></label>
+        <label>Телефон<input type="tel" name="phone" value="<%= user.phone %>" placeholder="+7 ___ ___ __ __"></label>
+        <label>Email<input type="email" value="<%= user.email %>" disabled></label>
+        <button type="submit" class="btn btn-gold btn-sm">Сохранить</button>
+      </form>
+      <p class="ap-since">На базаре с <%= new Date(user.created_at + 'Z').toLocaleDateString('ru-RU') %></p>
+      
+      <div class="account-seller-widget" style="margin-top:20px; padding-top:20px; border-top:1px solid var(--line-soft)">
+        <% if (seller) { %>
+          <h4 style="margin-bottom:10px; font-family:var(--font-display)">Вы — продавец</h4>
+          <p style="font-size:13px; color:var(--muted); margin-bottom:15px">Управляйте своими товарами и заказами.</p>
+          <a href="/seller-panel" class="btn btn-gold btn-sm btn-block">Панель продавца</a>
+        <% } else { %>
+          <h4 style="margin-bottom:10px; font-family:var(--font-display)">Стать продавцом</h4>
+          <p style="font-size:13px; color:var(--muted); margin-bottom:15px">Откройте свой магазин на Qara Bazar.</p>
+          <button class="btn btn-ghost btn-sm btn-block" onclick="document.getElementById('sellerRegModal').hidden = false">Открыть магазин</button>
+        <% } %>
+      </div>
+    </aside>
+
+    <% if (!seller) { %>
+    <div class="modal-backdrop" id="sellerRegModal" hidden>
+      <div class="modal">
+        <button class="modal-close" onclick="document.getElementById('sellerRegModal').hidden = true">×</button>
+        <h3 class="modal-title">Регистрация продавца</h3>
+        <p class="modal-desc">Придумайте название для вашей мастерской или бренда.</p>
+        <form id="sellerRegForm" class="auth-form" style="margin-top:20px">
+          <label>Название<input type="text" name="name" required></label>
+          <label>Тип
+            <select name="kind" style="width:100%; padding:10px; background:var(--surface); border:1px solid var(--line); color:var(--text); margin-top:5px; clip-path:var(--bevel-sm)">
+              <option value="master">Мастер</option>
+              <option value="brand">Бренд</option>
+              <option value="studio">Студия</option>
+            </select>
+          </label>
+          <button type="submit" class="btn btn-gold btn-block" style="margin-top:10px">Зарегистрировать</button>
+        </form>
+      </div>
+    </div>
+    <% } %>
+
+    <div class="account-orders">
+      <h3 class="ap-title reveal">Мои заказы — <%= orders.length %></h3>
+
+      <% if (orders.length) { %>
+        <% orders.forEach(o => { %>
+          <div class="uorder reveal">
+            <div class="uorder-head">
+              <span class="uorder-num"><%= o.number %></span>
+              <span class="uorder-date"><%= new Date(o.created_at + 'Z').toLocaleDateString('ru-RU') %></span>
+              <span class="uorder-status status-<%= o.status %>">
+                <%= { new: 'Новый', processing: 'В обработке', shipped: 'Отправлен', done: 'Выполнен', cancelled: 'Отменён' }[o.status] || o.status %>
+              </span>
+              <% if (o.payment_method === 'card') { %>
+                <span class="uorder-pay <%= o.payment_status === 'paid' ? 'paid' : 'unpaid' %>">
+                  <%= o.payment_status === 'paid' ? '✓ Оплачен' : 'Ждёт оплаты' %>
+                </span>
+              <% } else { %>
+                <span class="uorder-pay cod">При получении</span>
+              <% } %>
+              <b class="uorder-total"><%= fmt(o.total) %> <%= settings.currency %></b>
+            </div>
+            <ul class="uorder-items">
+              <% o.items.forEach(i => { %>
+                <li><span><%= i.title %> × <%= i.qty %></span><span><%= fmt(i.price * i.qty) %> <%= settings.currency %></span></li>
+              <% }) %>
+            </ul>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="empty-state">
+          <svg class="es-ornament"><use href="#qb-bag"/></svg>
+          <h3>Заказов пока нет</h3>
+          <p>Самое время выбрать что-то настоящее — сделанное руками.</p>
+          <a href="/catalog" class="btn btn-gold">В каталог</a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  document.getElementById('logoutBtn').addEventListener('click', async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
+    location.href = '/';
+  });
+  document.getElementById('profileForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const res = await fetch('/api/auth/profile', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: fd.get('name'), phone: fd.get('phone') })
+    });
+    const data = await res.json();
+    if (res.ok) QB.toast('Профиль сохранён');
+    else QB.toast(data.error || 'Ошибка');
+  });
+  
+  const regForm = document.getElementById('sellerRegForm');
+  if (regForm) {
+    regForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const res = await fetch('/api/seller/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: fd.get('name'), kind: fd.get('kind') })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        location.href = '/seller-panel';
+      } else {
+        QB.toast(data.error || 'Ошибка');
+      }
+    });
+  }
+})();
+</script>
+
+<%- include('partials/footer') %>

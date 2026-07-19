@@ -1,0 +1,109 @@
+<%- include('partials/header') %>
+
+<section class="page-head">
+  <div class="container">
+    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><a href="/account">Личный кабинет</a><span>◆</span><b>Панель продавца</b></nav>
+    <div class="account-head reveal">
+      <h1 class="page-title">Магазин: <%= seller.name %></h1>
+      <a href="/seller/<%= seller.slug %>" class="btn btn-ghost btn-sm" target="_blank">Смотреть витрину</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container seller-dashboard">
+    <aside class="seller-nav reveal">
+      <button class="snav-btn active" data-tab="profile">Профиль</button>
+      <button class="snav-btn" data-tab="products">Товары</button>
+      <button class="snav-btn" data-tab="orders">Заказы</button>
+    </aside>
+
+    <div class="seller-content reveal">
+      <!-- ПРОФИЛЬ -->
+      <div id="tab-profile" class="stab active">
+        <h2>Настройки профиля</h2>
+        <form id="sellerProfileForm" class="checkout-form" style="margin-top:20px; max-width:600px">
+          <label>Название<input type="text" name="name" value="<%= seller.name %>" required></label>
+          <label>Тип
+            <select name="kind" style="width:100%; padding:10px; background:var(--surface); border:1px solid var(--line); color:var(--text); margin-top:5px; clip-path:var(--bevel-sm)">
+              <option value="master" <%= seller.kind === 'master' ? 'selected' : '' %>>Мастер</option>
+              <option value="brand" <%= seller.kind === 'brand' ? 'selected' : '' %>>Бренд</option>
+              <option value="studio" <%= seller.kind === 'studio' ? 'selected' : '' %>>Студия</option>
+            </select>
+          </label>
+          <label>Город<input type="text" name="location" value="<%= seller.location %>"></label>
+          <label>О себе<textarea name="bio" rows="4"><%= seller.bio %></textarea></label>
+          <label>Instagram (без @)<input type="text" name="instagram" value="<%= seller.instagram %>"></label>
+          <label>Веб-сайт<input type="url" name="website" value="<%= seller.website %>"></label>
+          <button type="submit" class="btn btn-gold">Сохранить профиль</button>
+        </form>
+      </div>
+
+      <!-- ТОВАРЫ -->
+      <div id="tab-products" class="stab" hidden>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px">
+          <h2>Мои товары</h2>
+          <button class="btn btn-gold btn-sm" onclick="openProductModal()">+ Добавить товар</button>
+        </div>
+        <div id="productsList">Загрузка...</div>
+      </div>
+
+      <!-- ЗАКАЗЫ -->
+      <div id="tab-orders" class="stab" hidden>
+        <h2>Заказы покупателей</h2>
+        <div id="ordersList" style="margin-top:20px">Загрузка...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Модалка товара -->
+<div class="modal-backdrop" id="productModal" hidden>
+  <div class="modal" style="max-width:700px; width:95%">
+    <button class="modal-close" onclick="document.getElementById('productModal').hidden = true">×</button>
+    <h3 class="modal-title" id="productModalTitle">Добавить товар</h3>
+    <form id="productForm" class="checkout-form" style="margin-top:20px">
+      <input type="hidden" name="id">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px">
+        <div>
+          <label>Название *<input type="text" name="title" required></label>
+          <label>Цена * (₸)<input type="number" name="price" required min="1"></label>
+          <label>Старая цена (₸)<input type="number" name="old_price" min="0"></label>
+          <label>В наличии (шт.)<input type="number" name="stock" value="1" min="0"></label>
+          <label>Категория
+            <select name="category_id" id="catSelect" style="width:100%; padding:10px; background:var(--surface); border:1px solid var(--line); color:var(--text); margin-top:5px; clip-path:var(--bevel-sm)">
+              <option value="">Без категории</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>Материалы<input type="text" name="materials"></label>
+          <label>Описание<textarea name="description" rows="5"></textarea></label>
+          <label>Активен (виден)
+            <select name="active" style="width:100%; padding:10px; background:var(--surface); border:1px solid var(--line); color:var(--text); margin-top:5px; clip-path:var(--bevel-sm)">
+              <option value="1">Да</option>
+              <option value="0">Нет</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-gold btn-block" style="margin-top:20px">Сохранить товар</button>
+    </form>
+  </div>
+</div>
+
+<style>
+.seller-dashboard { display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start; }
+@media (max-width:768px) { .seller-dashboard { grid-template-columns: 1fr; } }
+.seller-nav { display: flex; flex-direction: column; gap: 5px; }
+.snav-btn { text-align: left; padding: 12px 16px; border-radius: 4px; font-weight: 500; font-family: var(--font-display); color: var(--muted); transition: .2s; }
+.snav-btn:hover { background: var(--surface-2); color: var(--text); }
+.snav-btn.active { background: var(--surface); color: var(--gold); }
+.seller-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+.seller-table th, .seller-table td { padding: 12px; border-bottom: 1px solid var(--line); text-align: left; }
+.seller-table th { color: var(--muted); font-weight: 500; }
+</style>
+
+<script src="/js/seller.js"></script>
+
+<%- include('partials/footer') %>

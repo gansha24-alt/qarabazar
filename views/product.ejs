@@ -1,0 +1,182 @@
+<%- include('partials/header') %>
+
+<section class="page-head">
+  <div class="container">
+    <nav class="breadcrumbs reveal">
+      <a href="/">Главная</a><span>◆</span>
+      <a href="/catalog">Каталог</a><span>◆</span>
+      <% if (product.category_name) { %>
+        <a href="/catalog?category=<%= product.category_slug %>"><%= product.category_name %></a><span>◆</span>
+      <% } %>
+      <b><%= product.title %></b>
+    </nav>
+  </div>
+</section>
+
+<section class="section product-page">
+  <div class="container product-layout">
+    <div class="product-gallery reveal">
+      <div class="pg-main" id="galleryMain">
+        <% if (product.images.length) { %>
+          <img src="<%= product.images[0] %>" alt="<%= product.title %>" id="galleryMainImg">
+        <% } else { %>
+          <span class="pc-placeholder"><svg><use href="#qb-brand"/></svg></span>
+        <% } %>
+        <% if (product.old_price && product.old_price > product.price) { %>
+          <span class="pc-sale">−<%= Math.round((1 - product.price / product.old_price) * 100) %>%</span>
+        <% } %>
+      </div>
+      <% if (product.images.length > 1) { %>
+        <div class="pg-thumbs">
+          <% product.images.forEach((img, i) => { %>
+            <button class="pg-thumb <%= i === 0 ? 'active' : '' %>" data-img="<%= img %>">
+              <img src="<%= img %>" alt="фото <%= i + 1 %>" loading="lazy">
+            </button>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+
+    <div class="product-info reveal">
+      <% if (product.featured) { %><span class="pi-flag">◆ Выбор базара</span><% } %>
+      <h1 class="pi-title"><%= product.title %></h1>
+
+      <% if (ratingCount > 0) { %>
+        <a href="#reviews" class="pi-rating">
+          <span class="stars" style="--rating:<%= ratingAvg %>" aria-label="Рейтинг <%= ratingAvg %> из 5"></span>
+          <b><%= ratingAvg %></b>
+          <span class="pi-rating-count"><%= ratingCount %> отзыв<%= ratingCount === 1 ? '' : (ratingCount >= 2 && ratingCount <= 4 ? 'а' : 'ов') %></span>
+        </a>
+      <% } %>
+
+      <% if (product.seller_name) { %>
+        <a href="/seller/<%= product.seller_slug %>" class="pi-seller">
+          <span class="pi-seller-avatar"><svg><use href="#qb-brand"/></svg></span>
+          <span>
+            <b><%= product.seller_name %></b>
+            <% if (product.seller_location) { %><small>◆ <%= product.seller_location %></small><% } %>
+          </span>
+        </a>
+      <% } %>
+
+      <div class="pi-price">
+        <b><%= fmt(product.price) %> <%= settings.currency %></b>
+        <% if (product.old_price && product.old_price > product.price) { %>
+          <s><%= fmt(product.old_price) %> <%= settings.currency %></s>
+        <% } %>
+      </div>
+
+      <p class="pi-stock <%= product.stock > 0 ? 'in-stock' : 'to-order' %>">
+        <%= product.stock > 0 ? `В наличии: ${product.stock} шт.` : 'Изготовление под заказ' %>
+      </p>
+
+      <div class="pi-actions">
+        <div class="qty-stepper" data-qty>
+          <button type="button" data-qty-minus>−</button>
+          <input type="number" value="1" min="1" max="99" data-qty-input>
+          <button type="button" data-qty-plus>+</button>
+        </div>
+        <button class="btn btn-gold btn-lg pi-add" data-add-to-cart="<%= product.id %>" data-qty-source>
+          В корзину
+        </button>
+        <button class="icon-btn pi-fav" data-fav-btn="<%= product.id %>" aria-label="В избранное">
+          <svg><use href="#qb-heart"/></svg>
+        </button>
+      </div>
+
+      <% if (product.description) { %>
+        <div class="pi-block">
+          <h3><svg><use href="#qb-brand"/></svg> Об изделии</h3>
+          <p><%= product.description %></p>
+        </div>
+      <% } %>
+      <% if (product.materials) { %>
+        <div class="pi-block">
+          <h3><svg><use href="#qb-brand"/></svg> Материалы и техника</h3>
+          <p><%= product.materials %></p>
+        </div>
+      <% } %>
+      <div class="pi-block">
+        <h3><svg><use href="#qb-brand"/></svg> Доставка</h3>
+        <p>Самовывоз от мастера, курьер по городу или международная отправка — детали уточним при подтверждении заказа.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ОТЗЫВЫ -->
+  <div class="container reviews-block" id="reviews">
+    <div class="section-head reveal">
+      <div class="section-title-wrap">
+        <span class="section-eyebrow">голоса покупателей</span>
+        <h2 class="section-title">Отзывы<%= ratingCount ? ' — ' + ratingCount : '' %></h2>
+      </div>
+      <% if (ratingCount > 0) { %>
+        <div class="reviews-avg">
+          <span class="stars" style="--rating:<%= ratingAvg %>"></span>
+          <b><%= ratingAvg %> / 5</b>
+        </div>
+      <% } %>
+    </div>
+
+    <div class="reviews-layout">
+      <div class="reviews-list">
+        <% if (reviews.length) { %>
+          <% reviews.forEach(r => { %>
+            <article class="review reveal">
+              <header>
+                <span class="review-avatar"><%= r.user_name.slice(0, 1).toUpperCase() %></span>
+                <div>
+                  <b><%= r.user_name %></b>
+                  <time><%= new Date(r.created_at + 'Z').toLocaleDateString('ru-RU') %></time>
+                </div>
+                <span class="stars stars-sm" style="--rating:<%= r.rating %>"></span>
+              </header>
+              <% if (r.text) { %><p><%= r.text %></p><% } %>
+            </article>
+          <% }) %>
+        <% } else { %>
+          <p class="reviews-empty reveal">Отзывов пока нет — станьте первым, кто расскажет об этом изделии.</p>
+        <% } %>
+      </div>
+
+      <div class="review-form-wrap reveal">
+        <% if (user) { %>
+          <form id="reviewForm" class="review-form" data-product-id="<%= product.id %>">
+            <h3>Ваш отзыв</h3>
+            <div class="rate-input" id="rateInput">
+              <% for (let i = 1; i <= 5; i++) { %>
+                <button type="button" data-rate="<%= i %>" aria-label="<%= i %> из 5"><svg><use href="#qb-rstar"/></svg></button>
+              <% } %>
+            </div>
+            <textarea name="text" rows="4" placeholder="Что понравилось? Расскажите о качестве, доставке, впечатлениях…"></textarea>
+            <button type="submit" class="btn btn-gold">Опубликовать</button>
+          </form>
+        <% } else { %>
+          <div class="review-login">
+            <h3>Есть что сказать?</h3>
+            <p>Войдите, чтобы оценить изделие и оставить отзыв мастеру.</p>
+            <a href="/login?next=/product/<%= product.slug %>" class="btn btn-ghost">Войти / Регистрация</a>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <% if (related.length) { %>
+    <div class="container related-block">
+      <div class="section-head reveal">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">рядом на прилавке</span>
+          <h2 class="section-title">Похожие изделия</h2>
+        </div>
+      </div>
+      <div class="product-grid">
+        <% related.forEach(p => { %><%- include('partials/product-card', { p }) %><% }) %>
+      </div>
+    </div>
+  <% } %>
+</section>
+
+<script src="/js/product.js" defer></script>
+
+<%- include('partials/footer') %>

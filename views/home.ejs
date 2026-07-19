@@ -1,0 +1,169 @@
+<%- include('partials/header') %>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ornament" aria-hidden="true">
+    <svg viewBox="0 0 600 600" class="hero-ring">
+      <g fill="none" stroke="currentColor">
+        <circle cx="300" cy="300" r="290" stroke-width="1" stroke-dasharray="4 10" opacity=".5"/>
+        <circle cx="300" cy="300" r="240" stroke-width="1" opacity=".35"/>
+        <circle cx="300" cy="300" r="180" stroke-width="1" stroke-dasharray="2 8" opacity=".5"/>
+      </g>
+      <g class="hero-ring-horns">
+        <% for (let i = 0; i < 12; i++) { %>
+          <use href="#qb-brand" width="64" height="45" x="268" y="18" transform="rotate(<%= i * 30 %> 300 300)" opacity=".8"/>
+        <% } %>
+      </g>
+      <use href="#qb-brand" width="90" height="90" x="255" y="255" class="hero-ring-star"/>
+    </svg>
+  </div>
+
+  <div class="container hero-inner">
+    <p class="hero-kicker reveal"><span>◆</span> маркетплейс локального творчества <span>◆</span></p>
+    <h1 class="hero-title">
+      <span class="ht-line ht-outline reveal">QARA</span>
+      <span class="ht-line ht-gold reveal">BAZAR</span>
+    </h1>
+    <p class="hero-sub reveal"><%= settings.site_tagline %>.<br>
+      Керамика, текстиль, украшения и авторские вещи — напрямую от художников, ремесленников и локальных брендов.</p>
+    <div class="hero-cta reveal">
+      <a href="/catalog" class="btn btn-gold btn-lg">Смотреть каталог</a>
+      <a href="/sellers" class="btn btn-ghost btn-lg">Мастера и бренды</a>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="stat"><b data-countup="<%= stats.sellers %>">0</b><span>мастеров и брендов</span></div>
+      <div class="stat-divider" aria-hidden="true"><svg><use href="#qb-brand"/></svg></div>
+      <div class="stat"><b data-countup="<%= stats.products %>">0</b><span>авторских изделий</span></div>
+      <div class="stat-divider" aria-hidden="true"><svg><use href="#qb-brand"/></svg></div>
+      <div class="stat"><b data-countup="<%= stats.cities %>">0</b><span>городов на карте</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- БЕГУЩАЯ СТРОКА -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <% for (let r = 0; r < 2; r++) { %>
+      <span>ручная работа</span><i>✦</i><span>керамика</span><i>✦</i><span>войлок</span><i>✦</i>
+      <span>украшения</span><i>✦</i><span>живопись</span><i>✦</i><span>локальные бренды</span><i>✦</i>
+      <span>авторские проекты</span><i>✦</i><span>qara bazar</span><i>✦</i>
+    <% } %>
+  </div>
+</div>
+
+<!-- КАТЕГОРИИ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-title-wrap">
+        <span class="section-eyebrow">ряды базара</span>
+        <h2 class="section-title">Категории</h2>
+      </div>
+      <a href="/catalog" class="section-link">Весь каталог →</a>
+    </div>
+    <div class="category-grid">
+      <% categories.forEach((c, i) => { %>
+        <a href="/catalog?category=<%= c.slug %>" class="category-card reveal" style="transition-delay:<%= (i % 4) * 70 %>ms">
+          <svg class="cc-emblem"><use href="#qb-<%= ['star','horn','yurt','sun','vessel','weave','shield','compass'].includes(c.emblem) ? c.emblem : 'star' %>"/></svg>
+          <span class="cc-name"><%= c.name %></span>
+          <span class="cc-count"><%= c.product_count %> <%= c.product_count === 1 ? 'изделие' : (c.product_count >= 2 && c.product_count <= 4 ? 'изделия' : 'изделий') %></span>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<% if (featured.length) { %>
+<!-- ВЫБОР БАЗАРА -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-title-wrap">
+        <span class="section-eyebrow">отобрано вручную</span>
+        <h2 class="section-title">Выбор базара</h2>
+      </div>
+    </div>
+    <div class="product-grid">
+      <% featured.forEach(p => { %><%- include('partials/product-card', { p }) %><% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- НОВИНКИ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-title-wrap">
+        <span class="section-eyebrow">свежее с прилавка</span>
+        <h2 class="section-title">Новинки</h2>
+      </div>
+      <a href="/catalog" class="section-link">Смотреть всё →</a>
+    </div>
+    <% if (latest.length) { %>
+      <div class="product-grid">
+        <% latest.forEach(p => { %><%- include('partials/product-card', { p }) %><% }) %>
+      </div>
+    <% } else { %>
+      <div class="empty-state reveal">
+        <svg class="es-ornament"><use href="#qb-brand"/></svg>
+        <h3>Прилавки скоро наполнятся</h3>
+        <p>Мастера уже раскладывают товар. Загляните чуть позже — или станьте первым продавцом базара.</p>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<!-- МАСТЕРА -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-title-wrap">
+        <span class="section-eyebrow">люди за прилавком</span>
+        <h2 class="section-title">Мастера и бренды</h2>
+      </div>
+      <a href="/sellers" class="section-link">Все мастера →</a>
+    </div>
+    <% if (sellers.length) { %>
+      <div class="seller-grid">
+        <% sellers.forEach((s, i) => { %>
+          <a href="/seller/<%= s.slug %>" class="seller-card reveal" style="transition-delay:<%= i * 70 %>ms">
+            <span class="sc-avatar">
+              <% if (s.avatar) { %><img src="<%= s.avatar %>" alt="<%= s.name %>" loading="lazy">
+              <% } else { %><svg><use href="#qb-brand"/></svg><% } %>
+            </span>
+            <span class="sc-kind"><%= s.kind === 'brand' ? 'бренд' : s.kind === 'studio' ? 'студия' : 'мастер' %></span>
+            <h3 class="sc-name"><%= s.name %></h3>
+            <% if (s.location) { %><span class="sc-location">◆ <%= s.location %></span><% } %>
+            <span class="sc-count"><%= s.product_count %> изделий</span>
+          </a>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="empty-state reveal">
+        <svg class="es-ornament"><use href="#qb-brand"/></svg>
+        <h3>Здесь появятся первые мастера</h3>
+        <p>Qara Bazar собирает художников, ремесленников и локальные бренды под одним шаныраком.</p>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<!-- МАНИФЕСТ -->
+<section class="section manifesto">
+  <div class="container manifesto-inner reveal">
+    <svg class="manifesto-star" aria-hidden="true"><use href="#qb-brand"/></svg>
+    <h2>Базар — это не место.<br><em>Это люди.</em></h2>
+    <p>«Qara» — значит «великий, настоящий». Мы собираем настоящее: вещи, сделанные руками,
+      истории мастеров и локальные бренды, которым тесно в родном городе.
+      От первой продажи на базаре — до международных проектов.</p>
+    <div class="manifesto-steps">
+      <div class="mstep"><b>01</b><h3>Мастер выставляет</h3><p>Изделие попадает на витрину напрямую из мастерской — без посредников.</p></div>
+      <div class="mstep"><b>02</b><h3>Вы находите</h3><p>Настоящие вещи с историей — не масс-маркет, а ручная работа и малые тиражи.</p></div>
+      <div class="mstep"><b>03</b><h3>Ремесло растёт</h3><p>Каждая покупка помогает локальному творчеству выйти на мировую сцену.</p></div>
+    </div>
+    <a href="/about" class="btn btn-ghost">Узнать о проекте</a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

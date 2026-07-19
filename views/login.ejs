@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<section class="section auth-section">
+  <div class="container">
+    <div class="auth-card reveal">
+      <h1 class="auth-title">Добро пожаловать<br>на базар</h1>
+      <p class="auth-sub">Войдите, чтобы отслеживать заказы и оставлять отзывы мастерам</p>
+
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" data-tab="login">Вход</button>
+        <button class="auth-tab" data-tab="register">Регистрация</button>
+      </div>
+
+      <form class="auth-form" id="loginTabForm" data-form="login">
+        <label>Email<input type="email" name="email" required placeholder="you@example.com" autocomplete="email"></label>
+        <label>Пароль<input type="password" name="password" required placeholder="••••••" autocomplete="current-password"></label>
+        <p class="auth-error" data-error hidden></p>
+        <button type="submit" class="btn btn-gold btn-lg btn-block">Войти</button>
+      </form>
+
+      <form class="auth-form" id="registerTabForm" data-form="register" hidden>
+        <label>Имя *<input type="text" name="name" required minlength="2" placeholder="Как к вам обращаться" autocomplete="name"></label>
+        <label>Email *<input type="email" name="email" required placeholder="you@example.com" autocomplete="email"></label>
+        <label>Телефон<input type="tel" name="phone" placeholder="+7 ___ ___ __ __" autocomplete="tel"></label>
+        <label>Пароль * <small>минимум 6 символов</small><input type="password" name="password" required minlength="6" placeholder="••••••" autocomplete="new-password"></label>
+        <p class="auth-error" data-error hidden></p>
+        <button type="submit" class="btn btn-gold btn-lg btn-block">Создать аккаунт</button>
+      </form>
+
+      <p class="auth-note">Продаёте свои изделия? <a href="/about">Станьте мастером базара</a></p>
+    </div>
+  </div>
+</section>
+
+<script>window.QB_NEXT = <%- JSON.stringify(next || '') %>;</script>
+<script src="/js/auth.js" defer></script>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+
+<section class="page-head">
+  <div class="container">
+    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b>Мастера и бренды</b></nav>
+    <h1 class="page-title reveal">Мастера и бренды</h1>
+    <p class="page-sub reveal">Люди, которые делают вещи руками — художники, ремесленники, дизайнеры и локальные бренды.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <% if (sellers.length) { %>
+      <div class="seller-grid seller-grid-page">
+        <% sellers.forEach((s, i) => { %>
+          <a href="/seller/<%= s.slug %>" class="seller-card reveal" style="transition-delay:<%= (i % 4) * 70 %>ms">
+            <span class="sc-avatar">
+              <% if (s.avatar) { %><img src="<%= s.avatar %>" alt="<%= s.name %>" loading="lazy">
+              <% } else { %><svg><use href="#qb-brand"/></svg><% } %>
+            </span>
+            <span class="sc-kind"><%= s.kind === 'brand' ? 'бренд' : s.kind === 'studio' ? 'студия' : 'мастер' %></span>
+            <h3 class="sc-name"><%= s.name %></h3>
+            <% if (s.location) { %><span class="sc-location">◆ <%= s.location %></span><% } %>
+            <% if (s.bio) { %><p class="sc-bio"><%= s.bio.slice(0, 120) %><%= s.bio.length > 120 ? '…' : '' %></p><% } %>
+            <span class="sc-count"><%= s.product_count %> изделий</span>
+          </a>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="empty-state reveal">
+        <svg class="es-ornament"><use href="#qb-brand"/></svg>
+        <h3>Мастера уже в пути</h3>
+        <p>Совсем скоро здесь появятся первые художники, ремесленники и локальные бренды.</p>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

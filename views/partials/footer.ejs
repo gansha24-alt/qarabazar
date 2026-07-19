@@ -1,0 +1,47 @@
+</main>
+
+<footer class="site-footer">
+  <div class="pattern-strip" aria-hidden="true"></div>
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="logo logo-lg">
+        <svg class="site-logo-svg" style="height:64px; margin-bottom:8px"><use href="#qb-logo"/></svg>
+      </a>
+      <p class="footer-tagline"><%= settings.site_tagline %></p>
+      <div class="footer-ornament" aria-hidden="true" style="margin-top:20px; display:flex; gap:16px; color:var(--line)">
+        <svg style="width:48px; height:48px"><use href="#qb-brand"/></svg>
+      </div>
+    </div>
+    <nav class="footer-col">
+      <h4>Базар</h4>
+      <a href="/catalog">Каталог</a>
+      <a href="/sellers">Мастера и бренды</a>
+      <a href="/about">О проекте</a>
+    </nav>
+    <nav class="footer-col">
+      <h4>Категории</h4>
+      <% categories.slice(0, 5).forEach(c => { %>
+        <a href="/catalog?category=<%= c.slug %>"><%= c.name %></a>
+      <% }) %>
+    </nav>
+    <div class="footer-col">
+      <h4>Связаться</h4>
+      <a href="mailto:<%= settings.contact_email %>"><%= settings.contact_email %></a>
+      <a href="tel:<%= settings.contact_phone.replace(/\s/g, '') %>"><%= settings.contact_phone %></a>
+      <% if (settings.contact_instagram) { %>
+        <a href="https://instagram.com/<%= settings.contact_instagram %>" target="_blank" rel="noopener">@<%= settings.contact_instagram %></a>
+      <% } %>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <%= new Date().getFullYear() %> Qara Bazar · сделано руками и для рук</span>
+    <a href="/admin" class="footer-admin-link">Для мастеров</a>
+  </div>
+</footer>
+</div><!-- /page-shell -->
+
+<div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
