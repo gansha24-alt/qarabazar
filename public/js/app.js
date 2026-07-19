@@ -188,6 +188,7 @@
 
   const burger = document.getElementById('burgerBtn');
   const mobileNav = document.getElementById('mobileNav');
+  const mobileNavClose = document.getElementById('mobileNavClose');
   if (burger && mobileNav) {
     burger.addEventListener('click', () => {
       const open = mobileNav.hidden;
@@ -195,6 +196,14 @@
       burger.classList.toggle('open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     });
+    
+    if (mobileNavClose) {
+      mobileNavClose.addEventListener('click', () => {
+        mobileNav.hidden = true;
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
     
     // Закрываем меню при клике на любую ссылку внутри него
     const navLinks = mobileNav.querySelectorAll('a');

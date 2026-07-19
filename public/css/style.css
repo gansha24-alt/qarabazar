@@ -165,10 +165,14 @@ h1, h2, h3, .logo-text { font-family: var(--font-display); font-weight: 600; lin
 .search-form input::placeholder { color: var(--muted); }
 
 .mobile-nav {
-  position: fixed; inset: 72px 0 0; z-index: 99;
-  background: rgba(10, 10, 10, .85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  display: flex; flex-direction: column; padding: 40px 24px; gap: 12px;
+  position: fixed; inset: 0; z-index: 105;
+  background: rgba(10, 10, 10, .95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  display: flex; flex-direction: column; padding: 0 24px 40px; gap: 12px;
   align-items: center; justify-content: flex-start;
+}
+.mobile-nav-header {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0; height: 72px; margin-bottom: 20px;
 }
 .mobile-nav a {
   font-family: var(--font-display); font-size: 26px; padding: 12px;

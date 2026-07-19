@@ -195,6 +195,14 @@
 </header>
 
 <div class="mobile-nav" id="mobileNav" hidden>
+  <div class="mobile-nav-header">
+    <a href="/" class="logo" aria-label="Qara Bazar">
+      <svg class="site-logo-svg"><use href="#qb-logo"/></svg>
+    </a>
+    <button class="burger open" id="mobileNavClose" aria-label="Закрыть">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
   <div class="lang-switch-mob">
     <a href="?lang=ru" class="<%= lang === 'ru' ? 'active' : '' %>">RU</a>
     <a href="?lang=en" class="<%= lang === 'en' ? 'active' : '' %>">EN</a>
