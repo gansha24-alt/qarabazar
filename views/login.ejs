@@ -8,14 +8,14 @@
 
       <div class="auth-tabs" role="tablist">
         <button class="auth-tab active" data-tab="login">Вход</button>
-        <button class="auth-tab" data-tab="register">Регистрация</button>
+        <button class="auth-tab" data-tab="register"><%= t('Регистрация') %></button>
       </div>
 
       <form class="auth-form" id="loginTabForm" data-form="login">
         <label>Email<input type="email" name="email" required placeholder="you@example.com" autocomplete="email"></label>
-        <label>Пароль<input type="password" name="password" required placeholder="••••••" autocomplete="current-password"></label>
+        <label><%= t('Пароль') %><input type="password" name="password" required placeholder="••••••" autocomplete="current-password"></label>
         <p class="auth-error" data-error hidden></p>
-        <button type="submit" class="btn btn-gold btn-lg btn-block">Войти</button>
+        <button type="submit" class="btn btn-gold btn-lg btn-block"><%= t('Войти') %></button>
       </form>
 
       <form class="auth-form" id="registerTabForm" data-form="register" hidden>

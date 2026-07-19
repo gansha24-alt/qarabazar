@@ -30,6 +30,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// Middleware для выбора языка
+app.use((req, res, next) => {
+  if (req.query.lang && ['ru', 'en'].includes(req.query.lang)) {
+    res.cookie('lang', req.query.lang, { maxAge: 31536000000, httpOnly: false });
+    req.lang = req.query.lang;
+  } else {
+    req.lang = req.cookies.lang === 'en' ? 'en' : 'ru';
+  }
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'public'), { index: false, redirect: false }));
 
 app.use('/api/auth', userAuthRouter);

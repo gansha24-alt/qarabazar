@@ -3,6 +3,7 @@ const express = require('express');
 const { db, getAllSettings } = require('./db');
 const { getUser } = require('./user-auth');
 const { getSeller } = require('./seller-api');
+const { getTranslator } = require('./locales');
 
 const router = express.Router();
 
@@ -11,9 +12,11 @@ function ctx(req, extra = {}) {
   const categories = db.prepare(`
     SELECT c.*, (SELECT COUNT(*) FROM products p WHERE p.category_id = c.id AND p.active = 1) AS product_count
     FROM categories c ORDER BY c.sort, c.id`).all();
-  const fmt = n => new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 }).format(Number(n) || 0);
+  const lang = req ? req.lang : 'ru';
+  const t = getTranslator(lang);
+  const fmt = n => new Intl.NumberFormat(lang === 'en' ? 'en-US' : 'ru-RU', { maximumFractionDigits: 2 }).format(Number(n) || 0);
   const user = req ? getUser(req) : null;
-  return { settings, categories, fmt, user, ...extra };
+  return { settings, categories, fmt, user, t, lang, ...extra };
 }
 
 function parseProducts(rows) {

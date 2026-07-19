@@ -2,8 +2,8 @@
 
 <section class="page-head">
   <div class="container">
-    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b>Корзина</b></nav>
-    <h1 class="page-title reveal">Корзина</h1>
+    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b><%= t('Корзина') %></b></nav>
+    <h1 class="page-title reveal"><%= t('Корзина') %></h1>
   </div>
 </section>
 
@@ -17,8 +17,8 @@
         <aside class="cart-summary">
           <h3 class="cs-title">Ваш заказ</h3>
           <div class="cs-row"><span>Товары (<span id="summaryCount">0</span>)</span><b id="summaryTotal">0</b></div>
-          <div class="cs-row cs-note"><span>Доставка</span><span>рассчитаем при подтверждении</span></div>
-          <div class="cs-total"><span>Итого</span><b id="summaryGrand">0</b></div>
+          <div class="cs-row cs-note"><span><%= t('Доставка') %></span><span>рассчитаем при подтверждении</span></div>
+          <div class="cs-total"><span><%= t('Итого') %></span><b id="summaryGrand">0</b></div>
 
           <form id="checkoutForm" class="checkout-form">
             <h4>Оформление</h4>

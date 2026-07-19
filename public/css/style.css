@@ -180,6 +180,14 @@ h1, h2, h3, .logo-text { font-family: var(--font-display); font-weight: 600; lin
 .mobile-nav a:nth-child(4) { animation-delay: .15s; }
 .mobile-nav a:nth-child(5) { animation-delay: .2s; }
 
+.lang-switch { display: flex; gap: 8px; font-size: 13px; font-weight: 600; margin-left: 10px; align-items: center; }
+.lang-switch a { color: var(--muted); text-decoration: none; padding: 4px; transition: .2s; }
+.lang-switch a:hover { color: var(--text); }
+.lang-switch a.active { color: var(--gold); pointer-events: none; }
+.lang-switch-mob { display: flex; gap: 16px; margin-bottom: 20px; }
+.lang-switch-mob a { font-size: 20px; color: var(--muted); padding: 0 !important; animation: none !important; }
+.lang-switch-mob a.active { color: var(--gold); }
+
 /* ---------- hero ---------- */
 .hero { position: relative; padding: 90px 0 70px; overflow: hidden; }
 .hero-inner { position: relative; z-index: 2; max-width: 780px; }

@@ -4,7 +4,7 @@
   <div class="container">
     <nav class="breadcrumbs reveal">
       <a href="/">Главная</a><span>◆</span>
-      <a href="/catalog">Каталог</a><span>◆</span>
+      <a href="/catalog"><%= t('Каталог') %></a><span>◆</span>
       <% if (product.category_name) { %>
         <a href="/catalog?category=<%= product.category_slug %>"><%= product.category_name %></a><span>◆</span>
       <% } %>
@@ -108,7 +108,7 @@
     <div class="section-head reveal">
       <div class="section-title-wrap">
         <span class="section-eyebrow">голоса покупателей</span>
-        <h2 class="section-title">Отзывы<%= ratingCount ? ' — ' + ratingCount : '' %></h2>
+        <h2 class="section-title"><%= t('Отзывы') %><%= ratingCount ? ' — ' + ratingCount : '' %></h2>
       </div>
       <% if (ratingCount > 0) { %>
         <div class="reviews-avg">
@@ -155,7 +155,7 @@
           <div class="review-login">
             <h3>Есть что сказать?</h3>
             <p>Войдите, чтобы оценить изделие и оставить отзыв мастеру.</p>
-            <a href="/login?next=/product/<%= product.slug %>" class="btn btn-ghost">Войти / Регистрация</a>
+            <a href="/login?next=/product/<%= product.slug %>" class="btn btn-ghost"><%= t('Войти / Регистрация') %></a>
           </div>
         <% } %>
       </div>

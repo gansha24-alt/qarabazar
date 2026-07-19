@@ -14,12 +14,12 @@
     </div>
     <nav class="footer-col">
       <h4>Базар</h4>
-      <a href="/catalog">Каталог</a>
-      <a href="/sellers">Мастера и бренды</a>
-      <a href="/about">О проекте</a>
+      <a href="/catalog"><%= t('Каталог') %></a>
+      <a href="/sellers"><%= t('Мастера и бренды') %></a>
+      <a href="/about"><%= t('О проекте') %></a>
     </nav>
     <nav class="footer-col">
-      <h4>Категории</h4>
+      <h4><%= t('Категории') %></h4>
       <% categories.slice(0, 5).forEach(c => { %>
         <a href="/catalog?category=<%= c.slug %>"><%= c.name %></a>
       <% }) %>

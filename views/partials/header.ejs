@@ -156,16 +156,16 @@
     </a>
 
     <nav class="main-nav" id="mainNav">
-      <a href="/catalog" class="nav-link">Каталог</a>
-      <a href="/sellers" class="nav-link">Мастера</a>
-      <a href="/about" class="nav-link">О проекте</a>
+      <a href="/catalog" class="nav-link"><%= t('Каталог') %></a>
+      <a href="/sellers" class="nav-link"><%= t('Мастера') %></a>
+      <a href="/about" class="nav-link"><%= t('О проекте') %></a>
     </nav>
 
     <div class="header-actions">
       <button class="icon-btn" id="searchToggle" aria-label="Поиск">
         <svg><use href="#qb-search"/></svg>
       </button>
-      <a href="<%= user ? '/account' : '/login' %>" class="icon-btn <%= user ? 'logged-in' : '' %>" aria-label="<%= user ? 'Личный кабинет' : 'Войти' %>" title="<%= user ? user.name : 'Войти' %>">
+      <a href="<%= user ? '/account' : '/login' %>" class="icon-btn <%= user ? 'logged-in' : '' %>" aria-label="<%= user ? t('Личный кабинет') : t('Войти') %>" title="<%= user ? user.name : t('Войти') %>">
         <svg><use href="#qb-user"/></svg>
         <% if (user) { %><span class="user-dot"></span><% } %>
       </a>
@@ -173,29 +173,38 @@
         <svg><use href="#qb-heart"/></svg>
         <span class="badge" data-fav-count hidden>0</span>
       </a>
-      <a href="/cart" class="icon-btn" aria-label="Корзина">
+      <a href="/cart" class="icon-btn" aria-label="<%= t('Корзина') %>">
         <svg><use href="#qb-bag"/></svg>
         <span class="badge" data-cart-count hidden>0</span>
       </a>
+      
+      <div class="lang-switch">
+        <a href="?lang=ru" class="<%= lang === 'ru' ? 'active' : '' %>">RU</a>
+        <a href="?lang=en" class="<%= lang === 'en' ? 'active' : '' %>">EN</a>
+      </div>
     </div>
   </div>
 
   <div class="search-bar" id="searchBar" hidden>
     <form class="container search-form" action="/catalog" method="get">
       <svg class="search-ico"><use href="#qb-search"/></svg>
-      <input type="text" name="q" id="searchInput" placeholder="Найти изделие, мастера, материал…" autocomplete="off">
-      <button type="submit" class="btn btn-gold btn-sm">Искать</button>
+      <input type="text" name="q" id="searchInput" placeholder="<%= t('Найти изделие, мастера, материал…') %>" autocomplete="off">
+      <button type="submit" class="btn btn-gold btn-sm"><%= t('Искать') %></button>
     </form>
   </div>
 </header>
 
 <div class="mobile-nav" id="mobileNav" hidden>
-  <a href="/catalog">Каталог</a>
-  <a href="/sellers">Мастера и бренды</a>
-  <a href="/about">О проекте</a>
-  <a href="/favorites">Избранное</a>
-  <a href="/cart">Корзина</a>
-  <a href="<%= user ? '/account' : '/login' %>"><%= user ? 'Личный кабинет' : 'Войти / Регистрация' %></a>
+  <div class="lang-switch-mob">
+    <a href="?lang=ru" class="<%= lang === 'ru' ? 'active' : '' %>">RU</a>
+    <a href="?lang=en" class="<%= lang === 'en' ? 'active' : '' %>">EN</a>
+  </div>
+  <a href="/catalog"><%= t('Каталог') %></a>
+  <a href="/sellers"><%= t('Мастера и бренды') %></a>
+  <a href="/about"><%= t('О проекте') %></a>
+  <a href="/favorites"><%= t('Избранное') %></a>
+  <a href="/cart"><%= t('Корзина') %></a>
+  <a href="<%= user ? '/account' : '/login' %>"><%= user ? t('Личный кабинет') : t('Войти / Регистрация') %></a>
 </div>
 
 <main class="site-main">

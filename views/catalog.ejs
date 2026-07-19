@@ -2,8 +2,8 @@
 
 <section class="page-head">
   <div class="container">
-    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b>Каталог</b></nav>
-    <h1 class="page-title reveal">Каталог</h1>
+    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b><%= t('Каталог') %></b></nav>
+    <h1 class="page-title reveal"><%= t('Каталог') %></h1>
   </div>
 </section>
 
@@ -11,7 +11,7 @@
   <div class="container catalog-layout">
     <aside class="catalog-filters" id="catalogFilters">
       <div class="filter-block">
-        <h4 class="filter-title">Категории</h4>
+        <h4 class="filter-title"><%= t('Категории') %></h4>
         <div class="filter-cats" id="filterCats">
           <button class="fcat <%= !activeCategory ? 'active' : '' %>" data-cat="">Все ряды</button>
           <% categories.forEach(c => { %>
@@ -24,11 +24,11 @@
       <div class="filter-block">
         <h4 class="filter-title">Цена, <%= settings.currency %></h4>
         <div class="filter-price">
-          <input type="number" id="priceMin" placeholder="от" min="0">
+          <input type="number" id="priceMin" placeholder="<%= t('от') %>" min="0">
           <span>—</span>
-          <input type="number" id="priceMax" placeholder="до" min="0">
+          <input type="number" id="priceMax" placeholder="<%= t('до') %>" min="0">
         </div>
-        <button class="btn btn-ghost btn-sm" id="applyPrice">Применить</button>
+        <button class="btn btn-ghost btn-sm" id="applyPrice"><%= t('Применить') %></button>
       </div>
     </aside>
 
@@ -39,12 +39,12 @@
           <input type="text" id="catalogSearch" placeholder="Поиск по каталогу…" value="<%= initialQuery %>">
         </div>
         <select id="catalogSort" class="ct-sort" aria-label="Сортировка">
-          <option value="new">Сначала новые</option>
+          <option value="new"><%= t('Сначала новые') %></option>
           <option value="featured">Выбор базара</option>
           <option value="price_asc">Дешевле</option>
           <option value="price_desc">Дороже</option>
         </select>
-        <button class="btn btn-ghost btn-sm filters-toggle" id="filtersToggle">Фильтры</button>
+        <button class="btn btn-ghost btn-sm filters-toggle" id="filtersToggle"><%= t('Фильтры') %></button>
       </div>
 
       <p class="catalog-count" id="catalogCount"></p>

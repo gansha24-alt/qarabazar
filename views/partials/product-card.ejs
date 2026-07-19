@@ -24,7 +24,7 @@
         <%= fmt(p.price) %> <%= settings.currency %>
         <% if (p.old_price && p.old_price > p.price) { %><s><%= fmt(p.old_price) %></s><% } %>
       </span>
-      <button class="pc-add" data-add-to-cart="<%= p.id %>" aria-label="В корзину">
+      <button class="pc-add" data-add-to-cart="<%= p.id %>" aria-label="<%= t('В корзину') %>">
         <svg><use href="#qb-bag"/></svg>
       </button>
     </div>

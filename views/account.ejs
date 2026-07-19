@@ -2,10 +2,10 @@
 
 <section class="page-head">
   <div class="container">
-    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b>Личный кабинет</b></nav>
+    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b><%= t('Личный кабинет') %></b></nav>
     <div class="account-head reveal">
       <h1 class="page-title">Салем, <%= user.name %>!</h1>
-      <button class="btn btn-ghost btn-sm" id="logoutBtn">Выйти</button>
+      <button class="btn btn-ghost btn-sm" id="logoutBtn"><%= t('Выйти') %></button>
     </div>
   </div>
 </section>
@@ -29,7 +29,7 @@
           <p style="font-size:13px; color:var(--muted); margin-bottom:15px">Управляйте своими товарами и заказами.</p>
           <a href="/seller-panel" class="btn btn-gold btn-sm btn-block">Панель продавца</a>
         <% } else { %>
-          <h4 style="margin-bottom:10px; font-family:var(--font-display)">Стать продавцом</h4>
+          <h4 style="margin-bottom:10px; font-family:var(--font-display)"><%= t('Стать продавцом') %></h4>
           <p style="font-size:13px; color:var(--muted); margin-bottom:15px">Откройте свой магазин на Qara Bazar.</p>
           <button class="btn btn-ghost btn-sm btn-block" onclick="document.getElementById('sellerRegModal').hidden = false">Открыть магазин</button>
         <% } %>

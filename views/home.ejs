@@ -27,15 +27,15 @@
     <p class="hero-sub reveal"><%= settings.site_tagline %>.<br>
       Керамика, текстиль, украшения и авторские вещи — напрямую от художников, ремесленников и локальных брендов.</p>
     <div class="hero-cta reveal">
-      <a href="/catalog" class="btn btn-gold btn-lg">Смотреть каталог</a>
-      <a href="/sellers" class="btn btn-ghost btn-lg">Мастера и бренды</a>
+      <a href="/catalog" class="btn btn-gold btn-lg"><%= t('Смотреть каталог') %></a>
+      <a href="/sellers" class="btn btn-ghost btn-lg"><%= t('Мастера и бренды') %></a>
     </div>
     <div class="hero-stats reveal">
-      <div class="stat"><b data-countup="<%= stats.sellers %>">0</b><span>мастеров и брендов</span></div>
+      <div class="stat"><b data-countup="<%= stats.sellers %>">0</b><span><%= t('мастеров и брендов') %></span></div>
       <div class="stat-divider" aria-hidden="true"><svg><use href="#qb-brand"/></svg></div>
-      <div class="stat"><b data-countup="<%= stats.products %>">0</b><span>авторских изделий</span></div>
+      <div class="stat"><b data-countup="<%= stats.products %>">0</b><span><%= t('авторских изделий') %></span></div>
       <div class="stat-divider" aria-hidden="true"><svg><use href="#qb-brand"/></svg></div>
-      <div class="stat"><b data-countup="<%= stats.cities %>">0</b><span>городов на карте</span></div>
+      <div class="stat"><b data-countup="<%= stats.cities %>">0</b><span><%= t('городов на карте') %></span></div>
     </div>
   </div>
 </section>
@@ -57,7 +57,7 @@
     <div class="section-head reveal">
       <div class="section-title-wrap">
         <span class="section-eyebrow">ряды базара</span>
-        <h2 class="section-title">Категории</h2>
+        <h2 class="section-title"><%= t('Категории') %></h2>
       </div>
       <a href="/catalog" class="section-link">Весь каталог →</a>
     </div>
@@ -120,7 +120,7 @@
     <div class="section-head reveal">
       <div class="section-title-wrap">
         <span class="section-eyebrow">люди за прилавком</span>
-        <h2 class="section-title">Мастера и бренды</h2>
+        <h2 class="section-title"><%= t('Мастера и бренды') %></h2>
       </div>
       <a href="/sellers" class="section-link">Все мастера →</a>
     </div>

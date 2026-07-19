@@ -12,7 +12,7 @@
       <% } else { %><svg><use href="#qb-brand"/></svg><% } %>
     </span>
     <div class="sh-info">
-      <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><a href="/sellers">Мастера</a><span>◆</span><b><%= seller.name %></b></nav>
+      <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><a href="/sellers"><%= t('Мастера') %></a><span>◆</span><b><%= seller.name %></b></nav>
       <span class="sc-kind reveal"><%= seller.kind === 'brand' ? 'бренд' : seller.kind === 'studio' ? 'студия' : 'мастер' %></span>
       <h1 class="page-title reveal"><%= seller.name %></h1>
       <% if (seller.location) { %><p class="sh-location reveal">◆ <%= seller.location %></p><% } %>

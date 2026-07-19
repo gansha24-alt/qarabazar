@@ -2,7 +2,7 @@
 
 <section class="page-head about-head">
   <div class="container">
-    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b>О проекте</b></nav>
+    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b><%= t('О проекте') %></b></nav>
     <h1 class="page-title reveal">Qara Bazar — <br>великий базар нового времени</h1>
     <p class="page-sub reveal"><%= settings.site_tagline %></p>
   </div>
@@ -42,9 +42,9 @@
 
 <section class="section">
   <div class="container about-stats reveal">
-    <div class="stat"><b data-countup="<%= stats.sellers %>">0</b><span>мастеров и брендов</span></div>
-    <div class="stat"><b data-countup="<%= stats.products %>">0</b><span>авторских изделий</span></div>
-    <div class="stat"><b data-countup="<%= stats.cities %>">0</b><span>городов</span></div>
+    <div class="stat"><b data-countup="<%= stats.sellers %>">0</b><span><%= t('мастеров и брендов') %></span></div>
+    <div class="stat"><b data-countup="<%= stats.products %>">0</b><span><%= t('авторских изделий') %></span></div>
+    <div class="stat"><b data-countup="<%= stats.cities %>">0</b><span><%= t('городов') %></span></div>
   </div>
 </section>
 
