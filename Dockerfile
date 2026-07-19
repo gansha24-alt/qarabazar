@@ -12,8 +12,8 @@ COPY . .
 
 # Указываем папки, которые должны быть постоянными (Persistent Volumes)
 # /app/data - для базы данных SQLite
-# /app/public/uploads - для загруженных картинок товаров
-VOLUME ["/app/data", "/app/public/uploads"]
+# В Railway Volume подключаются через панель управления (Dashboard -> Settings -> Volumes),
+# поэтому инструкция VOLUME здесь не нужна.
 
 EXPOSE 3000
 ENV PORT=3000
