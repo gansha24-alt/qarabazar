@@ -2,7 +2,7 @@
 
 <section class="page-head">
   <div class="container">
-    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b><%= t('Корзина') %></b></nav>
+    <nav class="breadcrumbs reveal"><a href="/"><%= t('Главная') %></a><span>◆</span><b><%= t('Корзина') %></b></nav>
     <h1 class="page-title reveal"><%= t('Корзина') %></h1>
   </div>
 </section>
@@ -15,35 +15,35 @@
         <div class="cart-items" id="cartItems"></div>
 
         <aside class="cart-summary">
-          <h3 class="cs-title">Ваш заказ</h3>
-          <div class="cs-row"><span>Товары (<span id="summaryCount">0</span>)</span><b id="summaryTotal">0</b></div>
-          <div class="cs-row cs-note"><span><%= t('Доставка') %></span><span>рассчитаем при подтверждении</span></div>
+          <h3 class="cs-title"><%= t('Ваш заказ') %></h3>
+          <div class="cs-row"><span><%= t('Товары (') %><span id="summaryCount">0</span>)</span><b id="summaryTotal">0</b></div>
+          <div class="cs-row cs-note"><span><%= t('Доставка') %></span><span><%= t('рассчитаем при подтверждении') %></span></div>
           <div class="cs-total"><span><%= t('Итого') %></span><b id="summaryGrand">0</b></div>
 
           <form id="checkoutForm" class="checkout-form">
-            <h4>Оформление</h4>
-            <label>Имя *<input type="text" name="customer_name" required minlength="2" placeholder="Как к вам обращаться"></label>
-            <label>Телефон *<input type="tel" name="phone" required minlength="5" placeholder="+7 ___ ___ __ __"></label>
-            <label>Email<input type="email" name="email" placeholder="для подтверждения заказа"></label>
+            <h4><%= t('Оформление') %></h4>
+            <label><%= t('Имя *') %><input type="text" name="customer_name" required minlength="2" placeholder="<%= t('Как к вам обращаться') %>"></label>
+            <label><%= t('Телефон *') %><input type="tel" name="phone" required minlength="5" placeholder="+7 ___ ___ __ __"></label>
+            <label>Email<input type="email" name="email" placeholder="<%= t('для подтверждения заказа') %>"></label>
             <label>Способ получения
               <select name="delivery">
-                <option value="pickup">Самовывоз от мастера</option>
-                <option value="courier">Курьер по городу</option>
-                <option value="international">Международная доставка</option>
+                <option value="pickup"><%= t('Самовывоз от мастера') %></option>
+                <option value="courier"><%= t('Курьер по городу') %></option>
+                <option value="international"><%= t('Международная доставка') %></option>
               </select>
             </label>
-            <label>Адрес<input type="text" name="address" placeholder="город, улица, дом"></label>
+            <label><%= t('Адрес') %><input type="text" name="address" placeholder="<%= t('город, улица, дом') %>"></label>
             <label>Оплата
               <select name="payment_method">
-                <option value="card">Картой онлайн (тестовый режим)</option>
-                <option value="cash">При получении</option>
+                <option value="card"><%= t('Картой онлайн (тестовый режим)') %></option>
+                <option value="cash"><%= t('При получении') %></option>
               </select>
             </label>
-            <label>Комментарий<textarea name="comment" rows="2" placeholder="пожелания к заказу"></textarea></label>
-            <button type="submit" class="btn btn-gold btn-lg btn-block" id="checkoutBtn">Оформить заказ</button>
-            <p class="checkout-hint">Мастер свяжется с вами для подтверждения деталей.</p>
+            <label><%= t('Комментарий') %><textarea name="comment" rows="2" placeholder="<%= t('пожелания к заказу') %>"></textarea></label>
+            <button type="submit" class="btn btn-gold btn-lg btn-block" id="checkoutBtn"><%= t('Оформить заказ') %></button>
+            <p class="checkout-hint"><%= t('Мастер свяжется с вами для подтверждения деталей.') %></p>
             <% if (!user) { %>
-              <p class="checkout-hint"><a href="/login?next=/cart">Войдите</a>, чтобы заказ сохранился в истории.</p>
+              <p class="checkout-hint"><a href="/login?next=/cart">Войдите</a><%= t(', чтобы заказ сохранился в истории.') %></p>
             <% } %>
           </form>
         </aside>
@@ -52,17 +52,17 @@
 
     <div class="empty-state" id="cartEmpty" hidden>
       <svg class="es-ornament"><use href="#qb-bag"/></svg>
-      <h3>Корзина пуста</h3>
-      <p>Загляните в ряды базара — там ждут авторские вещи ручной работы.</p>
-      <a href="/catalog" class="btn btn-gold">В каталог</a>
+      <h3><%= t('Корзина пуста') %></h3>
+      <p><%= t('Загляните в ряды базара — там ждут авторские вещи ручной работы.') %></p>
+      <a href="/catalog" class="btn btn-gold"><%= t('В каталог') %></a>
     </div>
 
     <div class="order-success" id="orderSuccess" hidden>
       <svg class="os-star" aria-hidden="true"><use href="#qb-brand"/></svg>
-      <h2>Заказ принят!</h2>
+      <h2><%= t('Заказ принят!') %></h2>
       <p class="os-number">Номер заказа: <b id="orderNumber"></b></p>
-      <p id="orderPayNote">Мастер свяжется с вами для подтверждения деталей. Рахмет за поддержку локального творчества! ◆</p>
-      <a href="/catalog" class="btn btn-gold">Вернуться на базар</a>
+      <p id="orderPayNote"><%= t('Мастер свяжется с вами для подтверждения деталей. Рахмет за поддержку локального творчества! ◆') %></p>
+      <a href="/catalog" class="btn btn-gold"><%= t('Вернуться на базар') %></a>
     </div>
 
   </div>
@@ -71,7 +71,7 @@
 <!-- МОКОВАЯ ОПЛАТА -->
 <div class="pay-backdrop" id="payBackdrop" hidden>
   <div class="pay-modal" role="dialog" aria-modal="true" aria-label="Оплата картой">
-    <span class="pay-test-badge">тестовый режим · деньги не списываются</span>
+    <span class="pay-test-badge"><%= t('тестовый режим · деньги не списываются') %></span>
     <div class="pay-card-visual">
       <span class="pcv-chip"></span>
       <span class="pcv-number" id="pcvNumber">•••• •••• •••• ••••</span>
@@ -85,16 +85,16 @@
         <input type="text" name="card_number" inputmode="numeric" placeholder="0000 0000 0000 0000" maxlength="19" required autocomplete="cc-number">
       </label>
       <div class="pay-row">
-        <label>Срок<input type="text" name="exp" inputmode="numeric" placeholder="MM/ГГ" maxlength="5" required autocomplete="cc-exp"></label>
+        <label><%= t('Срок') %><input type="text" name="exp" inputmode="numeric" placeholder="MM/ГГ" maxlength="5" required autocomplete="cc-exp"></label>
         <label>CVC<input type="password" name="cvc" inputmode="numeric" placeholder="•••" maxlength="3" required autocomplete="cc-csc"></label>
       </div>
       <p class="auth-error" id="payError" hidden></p>
       <button type="submit" class="btn btn-gold btn-lg btn-block" id="payBtn">Оплатить <span id="payAmount"></span></button>
-      <button type="button" class="pay-cancel" id="payCancel">Оплатить позже</button>
+      <button type="button" class="pay-cancel" id="payCancel"><%= t('Оплатить позже') %></button>
     </form>
     <div class="pay-processing" id="payProcessing" hidden>
       <span class="pay-spinner"></span>
-      <p>Связываемся с банком…</p>
+      <p><%= t('Связываемся с банком…') %></p>
     </div>
   </div>
 </div>

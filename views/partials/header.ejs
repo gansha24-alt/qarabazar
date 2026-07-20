@@ -147,12 +147,13 @@
 <div class="page-shell">
 <header class="site-header" id="siteHeader">
   <div class="container header-inner">
-    <button class="burger" id="burgerBtn" aria-label="Меню">
+    <button class="burger" id="burgerBtn" aria-label="<%= t('Меню') %>">
       <span></span><span></span><span></span>
     </button>
 
-    <a href="/" class="logo" aria-label="Qara Bazar — на главную">
+    <a href="/" class="logo" aria-label="Qara Bazar — <%= t('на главную') %>">
       <svg class="site-logo-svg"><use href="#qb-logo"/></svg>
+      <span class="logo-text">QARA<em>BAZAR</em></span>
     </a>
 
     <nav class="main-nav" id="mainNav">
@@ -162,14 +163,14 @@
     </nav>
 
     <div class="header-actions">
-      <button class="icon-btn" id="searchToggle" aria-label="Поиск">
+      <button class="icon-btn" id="searchToggle" aria-label="<%= t('Поиск') %>">
         <svg><use href="#qb-search"/></svg>
       </button>
       <a href="<%= user ? '/account' : '/login' %>" class="icon-btn <%= user ? 'logged-in' : '' %>" aria-label="<%= user ? t('Личный кабинет') : t('Войти') %>" title="<%= user ? user.name : t('Войти') %>">
         <svg><use href="#qb-user"/></svg>
         <% if (user) { %><span class="user-dot"></span><% } %>
       </a>
-      <a href="/favorites" class="icon-btn" aria-label="Избранное">
+      <a href="/favorites" class="icon-btn" aria-label="<%= t('Избранное') %>">
         <svg><use href="#qb-heart"/></svg>
         <span class="badge" data-fav-count hidden>0</span>
       </a>
@@ -198,8 +199,9 @@
   <div class="mobile-nav-header">
     <a href="/" class="logo" aria-label="Qara Bazar">
       <svg class="site-logo-svg"><use href="#qb-logo"/></svg>
+      <span class="logo-text">QARA<em>BAZAR</em></span>
     </a>
-    <button class="burger open" id="mobileNavClose" aria-label="Закрыть">
+    <button class="burger open" id="mobileNavClose" aria-label="<%= t('Закрыть') %>">
       <span></span><span></span><span></span>
     </button>
   </div>

@@ -13,7 +13,7 @@
       </div>
     </div>
     <nav class="footer-col">
-      <h4>Базар</h4>
+      <h4><%= t('Базар') %></h4>
       <a href="/catalog"><%= t('Каталог') %></a>
       <a href="/sellers"><%= t('Мастера и бренды') %></a>
       <a href="/about"><%= t('О проекте') %></a>
@@ -25,7 +25,7 @@
       <% }) %>
     </nav>
     <div class="footer-col">
-      <h4>Связаться</h4>
+      <h4><%= t('Связаться') %></h4>
       <a href="mailto:<%= settings.contact_email %>"><%= settings.contact_email %></a>
       <a href="tel:<%= settings.contact_phone.replace(/\s/g, '') %>"><%= settings.contact_phone %></a>
       <% if (settings.contact_instagram) { %>
@@ -34,8 +34,8 @@
     </div>
   </div>
   <div class="container footer-bottom">
-    <span>© <%= new Date().getFullYear() %> Qara Bazar · сделано руками и для рук</span>
-    <a href="/admin" class="footer-admin-link">Для мастеров</a>
+    <span>© <%= new Date().getFullYear() %> Qara Bazar · <%= t('сделано руками и для рук') %></span>
+    <a href="/admin" class="footer-admin-link"><%= t('Для мастеров') %></a>
   </div>
 </footer>
 </div><!-- /page-shell -->

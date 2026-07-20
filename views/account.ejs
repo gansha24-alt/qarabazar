@@ -2,7 +2,7 @@
 
 <section class="page-head">
   <div class="container">
-    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b><%= t('Личный кабинет') %></b></nav>
+    <nav class="breadcrumbs reveal"><a href="/"><%= t('Главная') %></a><span>◆</span><b><%= t('Личный кабинет') %></b></nav>
     <div class="account-head reveal">
       <h1 class="page-title">Салем, <%= user.name %>!</h1>
       <button class="btn btn-ghost btn-sm" id="logoutBtn"><%= t('Выйти') %></button>
@@ -43,15 +43,15 @@
         <h3 class="modal-title">Регистрация продавца</h3>
         <p class="modal-desc">Придумайте название для вашей мастерской или бренда.</p>
         <form id="sellerRegForm" class="auth-form" style="margin-top:20px">
-          <label>Название<input type="text" name="name" required></label>
+          <label><%= t('Название') %><input type="text" name="name" required></label>
           <label>Тип
             <select name="kind" style="width:100%; padding:10px; background:var(--surface); border:1px solid var(--line); color:var(--text); margin-top:5px; clip-path:var(--bevel-sm)">
-              <option value="master">Мастер</option>
-              <option value="brand">Бренд</option>
-              <option value="studio">Студия</option>
+              <option value="master"><%= t('Мастер') %></option>
+              <option value="brand"><%= t('Бренд') %></option>
+              <option value="studio"><%= t('Студия') %></option>
             </select>
           </label>
-          <button type="submit" class="btn btn-gold btn-block" style="margin-top:10px">Зарегистрировать</button>
+          <button type="submit" class="btn btn-gold btn-block" style="margin-top:10px"><%= t('Зарегистрировать') %></button>
         </form>
       </div>
     </div>
@@ -74,7 +74,7 @@
                   <%= o.payment_status === 'paid' ? '✓ Оплачен' : 'Ждёт оплаты' %>
                 </span>
               <% } else { %>
-                <span class="uorder-pay cod">При получении</span>
+                <span class="uorder-pay cod"><%= t('При получении') %></span>
               <% } %>
               <b class="uorder-total"><%= fmt(o.total) %> <%= settings.currency %></b>
             </div>
@@ -88,9 +88,9 @@
       <% } else { %>
         <div class="empty-state">
           <svg class="es-ornament"><use href="#qb-bag"/></svg>
-          <h3>Заказов пока нет</h3>
-          <p>Самое время выбрать что-то настоящее — сделанное руками.</p>
-          <a href="/catalog" class="btn btn-gold">В каталог</a>
+          <h3><%= t('Заказов пока нет') %></h3>
+          <p><%= t('Самое время выбрать что-то настоящее — сделанное руками.') %></p>
+          <a href="/catalog" class="btn btn-gold"><%= t('В каталог') %></a>
         </div>
       <% } %>
     </div>

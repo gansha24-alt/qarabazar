@@ -2,9 +2,9 @@
 
 <section class="page-head">
   <div class="container">
-    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b><%= t('Мастера и бренды') %></b></nav>
+    <nav class="breadcrumbs reveal"><a href="/"><%= t('Главная') %></a><span>◆</span><b><%= t('Мастера и бренды') %></b></nav>
     <h1 class="page-title reveal"><%= t('Мастера и бренды') %></h1>
-    <p class="page-sub reveal">Люди, которые делают вещи руками — художники, ремесленники, дизайнеры и локальные бренды.</p>
+    <p class="page-sub reveal"><%= t('Люди, которые делают вещи руками — художники, ремесленники, дизайнеры и локальные бренды.') %></p>
   </div>
 </section>
 
@@ -29,8 +29,8 @@
     <% } else { %>
       <div class="empty-state reveal">
         <svg class="es-ornament"><use href="#qb-brand"/></svg>
-        <h3>Мастера уже в пути</h3>
-        <p>Совсем скоро здесь появятся первые художники, ремесленники и локальные бренды.</p>
+        <h3><%= t('Мастера уже в пути') %></h3>
+        <p><%= t('Совсем скоро здесь появятся первые художники, ремесленники и локальные бренды.') %></p>
       </div>
     <% } %>
   </div>

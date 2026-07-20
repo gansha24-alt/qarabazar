@@ -12,7 +12,7 @@
       <% } else { %><svg><use href="#qb-brand"/></svg><% } %>
     </span>
     <div class="sh-info">
-      <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><a href="/sellers"><%= t('Мастера') %></a><span>◆</span><b><%= seller.name %></b></nav>
+      <nav class="breadcrumbs reveal"><a href="/"><%= t('Главная') %></a><span>◆</span><a href="/sellers"><%= t('Мастера') %></a><span>◆</span><b><%= seller.name %></b></nav>
       <span class="sc-kind reveal"><%= seller.kind === 'brand' ? 'бренд' : seller.kind === 'studio' ? 'студия' : 'мастер' %></span>
       <h1 class="page-title reveal"><%= seller.name %></h1>
       <% if (seller.location) { %><p class="sh-location reveal">◆ <%= seller.location %></p><% } %>
@@ -21,7 +21,7 @@
           <a href="https://instagram.com/<%= seller.instagram %>" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Instagram</a>
         <% } %>
         <% if (seller.website) { %>
-          <a href="<%= seller.website %>" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Сайт</a>
+          <a href="<%= seller.website %>" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><%= t('Сайт') %></a>
         <% } %>
       </div>
     </div>
@@ -43,7 +43,7 @@
   <div class="container">
     <div class="section-head reveal">
       <div class="section-title-wrap">
-        <span class="section-eyebrow">прилавок мастера</span>
+        <span class="section-eyebrow"><%= t('прилавок мастера') %></span>
         <h2 class="section-title">Изделия — <%= products.length %></h2>
       </div>
     </div>
@@ -54,8 +54,8 @@
     <% } else { %>
       <div class="empty-state reveal">
         <svg class="es-ornament"><use href="#qb-brand"/></svg>
-        <h3>Прилавок пока пуст</h3>
-        <p>Мастер готовит первые изделия к продаже.</p>
+        <h3><%= t('Прилавок пока пуст') %></h3>
+        <p><%= t('Мастер готовит первые изделия к продаже.') %></p>
       </div>
     <% } %>
   </div>

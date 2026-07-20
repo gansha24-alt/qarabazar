@@ -8,9 +8,9 @@
     <% if (p.old_price && p.old_price > p.price) { %>
       <span class="pc-sale">−<%= Math.round((1 - p.price / p.old_price) * 100) %>%</span>
     <% } %>
-    <% if (p.featured) { %><span class="pc-featured">Выбор базара</span><% } %>
+    <% if (p.featured) { %><span class="pc-featured"><%= t('Выбор базара') %></span><% } %>
   </a>
-  <button class="pc-fav" data-fav-btn="<%= p.id %>" aria-label="В избранное">
+  <button class="pc-fav" data-fav-btn="<%= p.id %>" aria-label="<%= t('В избранное') %>">
     <svg><use href="#qb-heart"/></svg>
   </button>
   <div class="pc-body">

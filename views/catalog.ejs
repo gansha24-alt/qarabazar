@@ -2,7 +2,7 @@
 
 <section class="page-head">
   <div class="container">
-    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b><%= t('Каталог') %></b></nav>
+    <nav class="breadcrumbs reveal"><a href="/"><%= t('Главная') %></a><span>◆</span><b><%= t('Каталог') %></b></nav>
     <h1 class="page-title reveal"><%= t('Каталог') %></h1>
   </div>
 </section>
@@ -13,10 +13,10 @@
       <div class="filter-block">
         <h4 class="filter-title"><%= t('Категории') %></h4>
         <div class="filter-cats" id="filterCats">
-          <button class="fcat <%= !activeCategory ? 'active' : '' %>" data-cat="">Все ряды</button>
+          <button class="fcat <%= !activeCategory ? 'active' : '' %>" data-cat=""><%= t('Все ряды') %></button>
           <% categories.forEach(c => { %>
             <button class="fcat <%= activeCategory === c.slug ? 'active' : '' %>" data-cat="<%= c.slug %>">
-              <%= c.name %> <i><%= c.product_count %></i>
+              <%= t(c.name) %> <i><%= c.product_count %></i>
             </button>
           <% }) %>
         </div>
@@ -36,13 +36,13 @@
       <div class="catalog-toolbar reveal">
         <div class="ct-search">
           <svg><use href="#qb-search"/></svg>
-          <input type="text" id="catalogSearch" placeholder="Поиск по каталогу…" value="<%= initialQuery %>">
+          <input type="text" id="catalogSearch" placeholder="<%= t('Поиск по каталогу…') %>" value="<%= initialQuery %>">
         </div>
         <select id="catalogSort" class="ct-sort" aria-label="Сортировка">
           <option value="new"><%= t('Сначала новые') %></option>
           <option value="featured">Выбор базара</option>
-          <option value="price_asc">Дешевле</option>
-          <option value="price_desc">Дороже</option>
+          <option value="price_asc"><%= t('Дешевле') %></option>
+          <option value="price_desc"><%= t('Дороже') %></option>
         </select>
         <button class="btn btn-ghost btn-sm filters-toggle" id="filtersToggle"><%= t('Фильтры') %></button>
       </div>
@@ -52,12 +52,12 @@
 
       <div class="empty-state" id="catalogEmpty" hidden>
         <svg class="es-ornament"><use href="#qb-brand"/></svg>
-        <h3>Ничего не нашлось</h3>
-        <p>Попробуйте изменить запрос или сбросить фильтры — базар большой.</p>
+        <h3><%= t('Ничего не нашлось') %></h3>
+        <p><%= t('Попробуйте изменить запрос или сбросить фильтры — базар большой.') %></p>
       </div>
 
       <div class="catalog-more">
-        <button class="btn btn-gold" id="loadMore" hidden>Показать ещё</button>
+        <button class="btn btn-gold" id="loadMore" hidden><%= t('Показать ещё') %></button>
       </div>
     </div>
   </div>

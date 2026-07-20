@@ -3,10 +3,10 @@
 <section class="page-head">
   <div class="container">
     <nav class="breadcrumbs reveal">
-      <a href="/">Главная</a><span>◆</span>
+      <a href="/"><%= t('Главная') %></a><span>◆</span>
       <a href="/catalog"><%= t('Каталог') %></a><span>◆</span>
       <% if (product.category_name) { %>
-        <a href="/catalog?category=<%= product.category_slug %>"><%= product.category_name %></a><span>◆</span>
+        <a href="/catalog?category=<%= product.category_slug %>"><%= t(product.category_name) %></a><span>◆</span>
       <% } %>
       <b><%= product.title %></b>
     </nav>
@@ -38,14 +38,14 @@
     </div>
 
     <div class="product-info reveal">
-      <% if (product.featured) { %><span class="pi-flag">◆ Выбор базара</span><% } %>
+      <% if (product.featured) { %><span class="pi-flag">◆ <%= t('Выбор базара') %></span><% } %>
       <h1 class="pi-title"><%= product.title %></h1>
 
       <% if (ratingCount > 0) { %>
         <a href="#reviews" class="pi-rating">
           <span class="stars" style="--rating:<%= ratingAvg %>" aria-label="Рейтинг <%= ratingAvg %> из 5"></span>
           <b><%= ratingAvg %></b>
-          <span class="pi-rating-count"><%= ratingCount %> отзыв<%= ratingCount === 1 ? '' : (ratingCount >= 2 && ratingCount <= 4 ? 'а' : 'ов') %></span>
+          <span class="pi-rating-count"><%= ratingCount %> <%= ratingCount === 1 ? t('отзыв') : (ratingCount >= 2 && ratingCount <= 4 ? t('отзыва') : t('отзывов')) %></span>
         </a>
       <% } %>
 
@@ -67,7 +67,7 @@
       </div>
 
       <p class="pi-stock <%= product.stock > 0 ? 'in-stock' : 'to-order' %>">
-        <%= product.stock > 0 ? `В наличии: ${product.stock} шт.` : 'Изготовление под заказ' %>
+        <%= product.stock > 0 ? `В наличии: ${product.stock} шт.` : t('Изготовление под заказ') %>
       </p>
 
       <div class="pi-actions">
@@ -79,7 +79,7 @@
         <button class="btn btn-gold btn-lg pi-add" data-add-to-cart="<%= product.id %>" data-qty-source>
           В корзину
         </button>
-        <button class="icon-btn pi-fav" data-fav-btn="<%= product.id %>" aria-label="В избранное">
+        <button class="icon-btn pi-fav" data-fav-btn="<%= product.id %>" aria-label="<%= t('В избранное') %>">
           <svg><use href="#qb-heart"/></svg>
         </button>
       </div>
@@ -98,7 +98,7 @@
       <% } %>
       <div class="pi-block">
         <h3><svg><use href="#qb-brand"/></svg> Доставка</h3>
-        <p>Самовывоз от мастера, курьер по городу или международная отправка — детали уточним при подтверждении заказа.</p>
+        <p><%= t('Самовывоз от мастера, курьер по городу или международная отправка — детали уточним при подтверждении заказа.') %></p>
       </div>
     </div>
   </div>
@@ -107,7 +107,7 @@
   <div class="container reviews-block" id="reviews">
     <div class="section-head reveal">
       <div class="section-title-wrap">
-        <span class="section-eyebrow">голоса покупателей</span>
+        <span class="section-eyebrow"><%= t('голоса покупателей') %></span>
         <h2 class="section-title"><%= t('Отзывы') %><%= ratingCount ? ' — ' + ratingCount : '' %></h2>
       </div>
       <% if (ratingCount > 0) { %>
@@ -135,26 +135,26 @@
             </article>
           <% }) %>
         <% } else { %>
-          <p class="reviews-empty reveal">Отзывов пока нет — станьте первым, кто расскажет об этом изделии.</p>
+          <p class="reviews-empty reveal"><%= t('Отзывов пока нет — станьте первым, кто расскажет об этом изделии.') %></p>
         <% } %>
       </div>
 
       <div class="review-form-wrap reveal">
         <% if (user) { %>
           <form id="reviewForm" class="review-form" data-product-id="<%= product.id %>">
-            <h3>Ваш отзыв</h3>
+            <h3><%= t('Ваш отзыв') %></h3>
             <div class="rate-input" id="rateInput">
               <% for (let i = 1; i <= 5; i++) { %>
                 <button type="button" data-rate="<%= i %>" aria-label="<%= i %> из 5"><svg><use href="#qb-rstar"/></svg></button>
               <% } %>
             </div>
-            <textarea name="text" rows="4" placeholder="Что понравилось? Расскажите о качестве, доставке, впечатлениях…"></textarea>
-            <button type="submit" class="btn btn-gold">Опубликовать</button>
+            <textarea name="text" rows="4" placeholder="<%= t('Что понравилось? Расскажите о качестве, доставке, впечатлениях…') %>"></textarea>
+            <button type="submit" class="btn btn-gold"><%= t('Опубликовать') %></button>
           </form>
         <% } else { %>
           <div class="review-login">
-            <h3>Есть что сказать?</h3>
-            <p>Войдите, чтобы оценить изделие и оставить отзыв мастеру.</p>
+            <h3><%= t('Есть что сказать?') %></h3>
+            <p><%= t('Войдите, чтобы оценить изделие и оставить отзыв мастеру.') %></p>
             <a href="/login?next=/product/<%= product.slug %>" class="btn btn-ghost"><%= t('Войти / Регистрация') %></a>
           </div>
         <% } %>
@@ -166,8 +166,8 @@
     <div class="container related-block">
       <div class="section-head reveal">
         <div class="section-title-wrap">
-          <span class="section-eyebrow">рядом на прилавке</span>
-          <h2 class="section-title">Похожие изделия</h2>
+          <span class="section-eyebrow"><%= t('рядом на прилавке') %></span>
+          <h2 class="section-title"><%= t('Похожие изделия') %></h2>
         </div>
       </div>
       <div class="product-grid">

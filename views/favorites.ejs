@@ -2,7 +2,7 @@
 
 <section class="page-head">
   <div class="container">
-    <nav class="breadcrumbs reveal"><a href="/">Главная</a><span>◆</span><b><%= t('Избранное') %></b></nav>
+    <nav class="breadcrumbs reveal"><a href="/"><%= t('Главная') %></a><span>◆</span><b><%= t('Избранное') %></b></nav>
     <h1 class="page-title reveal"><%= t('Избранное') %></h1>
   </div>
 </section>
@@ -12,9 +12,9 @@
     <div class="product-grid" id="favGrid"></div>
     <div class="empty-state" id="favEmpty" hidden>
       <svg class="es-ornament"><use href="#qb-heart"/></svg>
-      <h3>Пока пусто</h3>
-      <p>Отмечайте сердцем то, что запало в душу — соберём здесь.</p>
-      <a href="/catalog" class="btn btn-gold">В каталог</a>
+      <h3><%= t('Пока пусто') %></h3>
+      <p><%= t('Отмечайте сердцем то, что запало в душу — соберём здесь.') %></p>
+      <a href="/catalog" class="btn btn-gold"><%= t('В каталог') %></a>
     </div>
   </div>
 </section>
